@@ -7,7 +7,7 @@ if(empty($get_id))
 	$get_id = @intval($this->uri->segment(3));
 }
 
-if(is_admin() || $get_id == $this->session->userdata['logged_in']['id'])
+if(is_admin() || $get_id == $this->session->userdata[base_url().'_logged_in']['id'])
 {
 	$this->session->__set('link_js', base_url().'templates/admin/modules/user/js/script.js');
 
@@ -54,7 +54,7 @@ if(is_admin() || $get_id == $this->session->userdata['logged_in']['id'])
 		$data = $this->data_model->get_one_data('user', ' WHERE id = '.$get_id);
 		if(!empty($data))
 		{
-			$this->session->set_userdata('logged_in', $data);
+			$this->session->set_userdata(base_url().'_logged_in', $data);
 			set_cookie('username', $data['username']);
 			set_cookie('password', $data['password']);
 		}

@@ -176,7 +176,7 @@ function _func($module = '')
 function is_admin()
 {
 	$return = false;
-	$role   = @$_SESSION['logged_in']['role'];
+	$role   = @$_SESSION[base_url().'_logged_in']['role'];
 	if(!empty($role))
 	{
 		if($role==1)

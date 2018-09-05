@@ -127,15 +127,15 @@ class Esg extends CI_Model
 
   public function comment_form()
   {
-    $site_key   = '6LcgLVUUAAAAAIJ9uc_LhbtJUUpH335cyEfGcAc6';
+    $site_key   = '6LeHom4UAAAAAMWzUbqeJlPbRqblQtKaP6abHgwX';
     $this->session->set_userdata('js_ext', "<script src='https://www.google.com/recaptcha/api.js'></script>");
     if(!empty($module) && is_array($module))
     {
       if(!empty($module));
     }
-    if(!empty($this->session->userdata['logged_in']))
+    if(!empty($this->session->userdata[base_url().'_logged_in']))
     {
-      $this->user = $this->session->userdata('logged_in');
+      $this->user = $this->session->userdata(base_url().'_logged_in');
     }
     if(!empty($_POST))
     {
@@ -167,7 +167,7 @@ class Esg extends CI_Model
 
   private function comment_action()
   {
-    $secret_key = '6LcgLVUUAAAAAFxbONhyCKp8eApXdKTV4tG2NIT9';
+    $secret_key = '6LeHom4UAAAAAG0MzKDA7X_m0vlLBPeR--eKu6Jq';
     $is_human   = true;
     if(isset($_POST['g-recaptcha-response']))
     {
@@ -188,7 +188,7 @@ class Esg extends CI_Model
     if($is_human)
     {
       $data = array();
-      $user = $this->session->userdata('logged_in');
+      $user = $this->session->userdata(base_url().'_logged_in');
       unset($_POST['g-recaptcha-response']);
       foreach ($_POST as $key => $value)
       {

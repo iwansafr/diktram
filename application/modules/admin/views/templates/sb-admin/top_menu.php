@@ -1,7 +1,7 @@
 <li class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<?php
-		$user_data = $this->session->userdata('logged_in');
+		$user_data = $this->session->userdata(base_url().'_logged_in');
 		if(!empty($user_data['image']))
 		{
 			?>
@@ -11,7 +11,7 @@
 			<?php
 		}else{
 			?>
-			<i class="fa fa-user"></i> <?php echo $this->session->userdata['logged_in']['username'] ?> <b class="caret"></b>
+			<i class="fa fa-user"></i> <?php echo $this->session->userdata[base_url().'_logged_in']['username'] ?> <b class="caret"></b>
 			<?php
 		}
 		?>

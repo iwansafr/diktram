@@ -6,7 +6,7 @@
 
     <li class="dropdown user user-menu">
     	<?php
-			$user_data = $this->session->userdata('logged_in');
+			$user_data = $this->session->userdata(base_url().'_logged_in');
 			?>
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       	<?php
@@ -18,7 +18,7 @@
 					<?php
 				}else{
 					?>
-					<i class="fa fa-user"></i> <span class="hidden-xs"><?php echo $this->session->userdata['logged_in']['username'] ?> </span>
+					<i class="fa fa-user"></i> <span class="hidden-xs"><?php echo $this->session->userdata[base_url().'_logged_in']['username'] ?> </span>
 					<?php
 				}
 				?>
@@ -35,7 +35,7 @@
 						<?php
 					}else{
 						?>
-						<i class="fa fa-user"></i> <p><?php echo $this->session->userdata['logged_in']['username'] ?> </p>
+						<i class="fa fa-user"></i> <p><?php echo $this->session->userdata[base_url().'_logged_in']['username'] ?> </p>
 						<?php
 					}
 					?>

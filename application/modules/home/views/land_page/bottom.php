@@ -30,33 +30,36 @@
 					<?php
 					$esg = new esg();
 					$data_config = get_block_config('menu_bottom', $config_template);
-			    $data_menu = $esg->parent_menu($data_config['table'], $data_config['id']);
-			    foreach ($data_menu as $dkey => $dvalue)
-			    {
-			    	$sub_menu = $esg->child_menu($data_config['table'], $dvalue['id']);
-			    	if(empty($sub_menu))
-			    	{
-				      ?>
-				      <li>
-								<a href="<?php echo $dvalue['link']; ?>" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-<?php echo $dvalue['title']?> fa-fw"></i> <span class="network-name"><?php echo ucfirst($dvalue['title']) ?></span></a>
-							</li>
-				      <?php
-			    	}else{
-							?>
-		    			<li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $dvalue['title'] ?> <span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			          	<?php
-			          	foreach ($sub_menu as $skey => $svalue)
-			          	{
-			          		echo '<li><a href="'.$svalue['link'].'">'.$svalue['title'].'</a></li>';
-			          	}
-			          	?>
-			          </ul>
-			        </li>
-		    			<?php
-			    	}
-			    }
+					if(!empty($data_config['table']))
+					{
+				    $data_menu = $esg->parent_menu($data_config['table'], $data_config['id']);
+				    foreach ($data_menu as $dkey => $dvalue)
+				    {
+				    	$sub_menu = $esg->child_menu($data_config['table'], $dvalue['id']);
+				    	if(empty($sub_menu))
+				    	{
+					      ?>
+					      <li>
+									<a href="<?php echo $dvalue['link']; ?>" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-<?php echo $dvalue['title']?> fa-fw"></i> <span class="network-name"><?php echo ucfirst($dvalue['title']) ?></span></a>
+								</li>
+					      <?php
+				    	}else{
+								?>
+			    			<li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $dvalue['title'] ?> <span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				          	<?php
+				          	foreach ($sub_menu as $skey => $svalue)
+				          	{
+				          		echo '<li><a href="'.$svalue['link'].'">'.$svalue['title'].'</a></li>';
+				          	}
+				          	?>
+				          </ul>
+				        </li>
+			    			<?php
+				    	}
+				    }
+					}
 					?>
 				</ul>
 			</div>

@@ -27,7 +27,7 @@ $form->setMultiSelect('cat_ids','content_cat','id,par_id,title');
 $form->addInput('title', 'text');
 
 $form->addInput('author','hidden');
-$form->setValue('author',$this->session->userdata['logged_in']['username']);
+$form->setValue('author',$this->session->userdata[base_url().'_logged_in']['username']);
 
 $form->addInput('image','upload');
 $form->setAccept('image', 'image/jpeg,image/png');

@@ -179,7 +179,7 @@ class Content_model extends CI_Model
 		}else{
 			$cat_ids = '';
 		}
-		$author = $this->session->userdata['logged_in']['username'];
+		$author = $this->session->userdata[base_url().'_logged_in']['username'];
 		$publish = !empty($this->input->post('publish')) ? 1:0;
 		$data = array(
 			'title' => $this->input->post('title'),

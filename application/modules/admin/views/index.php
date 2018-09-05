@@ -20,7 +20,7 @@ if(!empty($active_template))
 	$data['admin_templates'] = $admin_templates;
 }
 
-if(!empty($this->session->userdata['logged_in']))
+if(!empty($this->session->userdata[base_url().'_logged_in']))
 {
 	$mod['name'] = $this->router->fetch_class();
 	$mod['task'] = $this->router->fetch_method();
@@ -46,7 +46,7 @@ if(!empty($this->session->userdata['logged_in']))
   if(!empty($allow))
   {
     $data = $this->data_model->get_one_data('user', "WHERE username = '{$username}'");
-    $this->session->set_userdata('logged_in', $data);
+    $this->session->set_userdata(base_url().'_logged_in', $data);
     set_cookie('username', $username);
     set_cookie('password', $password);
     $this->load->view('admin/index', $data);

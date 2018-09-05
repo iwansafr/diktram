@@ -57,7 +57,7 @@ class Admin extends CI_Controller
         if(!empty($allow))
         {
           $data = $this->data_model->get_one_data('user', "WHERE username = '{$username}'");
-          $this->session->set_userdata('logged_in', $data);
+          $this->session->set_userdata(base_url().'_logged_in', $data);
           if(!empty(@$_POST['remember_me']))
           {
             // $year = time()+31536000;
@@ -92,13 +92,13 @@ class Admin extends CI_Controller
             if($failed_login <=3)
             {
               $failed_login++;
-              $this->session->set_userdata(array('failed_login'=>$failed_login));
+              $this->session->set_userdata(array(base_url().'_failed_login'=>$failed_login));
             }else{
               $data['msg']   = $login_alert_value['login_max_failed'];
               $data['alert'] = 'danger';
             }
           }else{
-            $this->session->set_userdata(array('failed_login'=>1));
+            $this->session->set_userdata(array(base_url().'_failed_login'=>1));
           }
           $user_login = array(
             'user_id' => 0,
@@ -118,7 +118,7 @@ class Admin extends CI_Controller
           if(!empty($allow))
           {
             $data = $this->data_model->get_one_data('user', "WHERE username = '{$username}'");
-            $this->session->set_userdata('logged_in', $data);
+            $this->session->set_userdata(base_url().'_logged_in', $data);
             $this->load->view('admin/index', $data);
           }
         }

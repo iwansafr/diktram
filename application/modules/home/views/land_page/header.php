@@ -20,15 +20,18 @@
 				<ul class="list-inline intro-social-buttons">
 					<?php
 					$data_config = get_block_config('menu_header', $config_template);
-			    $data_menu = $this->db->get_where($data_config['table'], 'publish = 1 AND par_id = 0 AND position_id = '.$data_config['id'])->result_array();
-			    foreach ($data_menu as $dkey => $dvalue)
-			    {
-			      ?>
-			      <li>
-							<a href="<?php echo $dvalue['link']; ?>" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-<?php echo $dvalue['title']?> fa-fw"></i> <span class="network-name"><?php echo ucfirst($dvalue['title']) ?></span></a>
-						</li>
-			      <?php
-			    }
+					if(!empty($data_config['table']))
+					{
+				    $data_menu = $this->db->get_where($data_config['table'], 'publish = 1 AND par_id = 0 AND position_id = '.$data_config['id'])->result_array();
+				    foreach ($data_menu as $dkey => $dvalue)
+				    {
+				      ?>
+				      <li>
+								<a href="<?php echo $dvalue['link']; ?>" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-<?php echo $dvalue['title']?> fa-fw"></i> <span class="network-name"><?php echo ucfirst($dvalue['title']) ?></span></a>
+							</li>
+				      <?php
+				    }
+					}
 					?>
 				</ul>
 			</div>

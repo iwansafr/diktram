@@ -1,4 +1,4 @@
-<?php $user_data = $this->session->userdata('logged_in');?>
+<?php $user_data = $this->session->userdata(base_url().'_logged_in');?>
 <section class="sidebar">
   <!-- Sidebar user panel -->
   <div class="user-panel">
@@ -11,7 +11,7 @@
 				<?php
 			}else{
 				?>
-				<i class="fa fa-user"></i> <span class="hidden-xs"><?php echo $this->session->userdata['logged_in']['username'] ?> </span>
+				<i class="fa fa-user"></i> <span class="hidden-xs"><?php echo $this->session->userdata[base_url().'_logged_in']['username'] ?> </span>
 				<?php
 			}
 			?>

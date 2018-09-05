@@ -69,6 +69,7 @@ if(!empty($active_template))
 			}else{
 				$option_block = $cat;
 			}
+			echo '<option value="0">None</option>';
 			foreach ($option_block as $keys => $values)
 			{
 				$selected = ($values['id'] == $data[$block_title]['content']) ? 'selected' : '';
