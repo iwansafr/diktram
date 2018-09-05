@@ -36,7 +36,7 @@ $esg = new esg();
 			    	date_default_timezone_set('Asia/Jakarta');
 			    	?>
 					</ul>
-					<p class="copyright text-muted small">Copyright &copy; <?php echo date('Y') ?> <?php echo '<a href="'.base_url().'">'.$site_value['title'].'</a>' ?> | Powered By <a href="http://esoftgreat.com">esoftgreat</a>. All Rights Reserved</p>
+					<p class="copyright text-muted small">Copyright &copy; <?php echo date('Y') ?> <?php echo '<a href="'.base_url().'">'.$site_value['title'].'</a>' ?> . All Rights Reserved</p>
 				</div>
 			</div>
 		</div>

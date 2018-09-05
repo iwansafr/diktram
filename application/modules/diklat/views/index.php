@@ -4,7 +4,6 @@
 </div>
 <div class="col-md-8">
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');
-
 	$form = new Ecrud();
 	$form->init('edit');
 	$form->setHeading('Peserta');

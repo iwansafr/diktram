@@ -24,9 +24,10 @@ if($mod['name'] == 'content')
 <title><?php echo @$site_value['title'] ?></title>
 <meta name="description" content="<?php echo $site_value['description'] ?>">
 <meta name="keywords" content="<?php echo $site_value['keyword'] ?>">
-<meta name="developer" content="esoftgreat.com">
-<meta name="author" content="esoftgreat">
+<meta name="developer" content="esoftgreat">
+<meta name="author" content="admin">
 <meta name="ROBOTS" content="all, index, follow">
+<link rel="shortcut icon" type="image/x-icon" href="<?php echo $image; ?>">
 
 
 <meta name="url" content="<?php echo base_url() ?>">
@@ -45,7 +46,6 @@ if($mod['name'] == 'content')
 <link itemprop="thumbnailUrl" href="<?php echo $image ?>">
 <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject"> <link itemprop="url" href="<?php echo $image ?>"> </span>
 
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo $image; ?>">
 <link href="<?php echo base_url().'templates/admin/'; ?>css/bootstrap.min.css" rel="stylesheet">
 <link href="<?php echo base_url().'templates/admin/'; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url().'templates/admin/'; ?>modules/esg/css/style.css" rel="stylesheet" type="text/css">

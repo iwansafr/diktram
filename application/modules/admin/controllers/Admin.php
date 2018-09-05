@@ -58,13 +58,13 @@ class Admin extends CI_Controller
         {
           $data = $this->data_model->get_one_data('user', "WHERE username = '{$username}'");
           $this->session->set_userdata('logged_in', $data);
-          if($_POST['remember_me'])
+          if(!empty(@$_POST['remember_me']))
           {
             // $year = time()+31536000;
             $year = time()+60*60*24*30;
             set_cookie('username', $username, $year);
             set_cookie('password', $password, $year);
-          }else if(!$_POST['remember_me'])
+          }else if(empty(@$_POST['remember_me']))
           {
             if(isset($_COOKIE['username']))
             {
@@ -243,44 +243,6 @@ class Admin extends CI_Controller
     $this->load->view('admin/index');
   }
 
-  /*Product*/
-  public function product_category($id = 0)
-  {
-    $data['id'] = $id;
-    $this->load->view('admin/index',$data);
-  }
-
-  public function product_category_edit($id = 0)
-  {
-    $this->load->view('admin/index');
-  }
-
-  public function product_cat_list($id = 0)
-  {
-    $this->load->view('admin/index');
-  }
-
-  public function product_list()
-  {
-    $this->load->view('admin/index');
-  }
-
-  public function product_edit($id = 0)
-  {
-    $data['id'] = $id;
-    $this->load->view('admin/index', $data);
-  }
-  public function product_add_menu($id = 0)
-  {
-    $data['id'] = $id;
-    $this->load->view('admin/index', $data);
-  }
-  public function product_cat_add_menu($id = 0)
-  {
-    $data['id'] = $id;
-    $this->load->view('admin/index', $data);
-  }
-
   function config($name = '')
   {
     $data['config'] = $this->config_model->get_config($name);
@@ -364,26 +326,7 @@ class Admin extends CI_Controller
   {
     $this->load->view('admin/index');
   }
-  public function ppdb_list()
-  {
-    $this->load->view('admin/index');
-  }
-  public function ppdb_edit()
-  {
-    $this->load->view('admin/index');
-  }
-  public function ppdb_excel()
-  {
-    $this->load->view('admin/ppdb/excel');
-  }
-  public function media_gallery()
-  {
-    $this->load->view('admin/index');
-  }
-  public function media_pick_gallery()
-  {
-    $this->load->view('admin/media/pick_gallery');
-  }
+
   public function config_developing()
   {
     $this->load->view('admin/config/developing');

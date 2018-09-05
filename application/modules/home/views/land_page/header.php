@@ -6,7 +6,8 @@
     text-align: center;
     color: #f8f8f8;
     background: url(<?php echo image_module('config', 'header/'.$header_value['image']) ?>) no-repeat center center;
-    background-size: cover;
+    /*background-size: cover;*/
+    object-fit: contain;
 	}
 </style>
 <div class="container">

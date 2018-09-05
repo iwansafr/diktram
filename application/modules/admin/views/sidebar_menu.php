@@ -103,28 +103,6 @@ if(!empty($admin_templates))
 	    )
 	  ),
 	  array(
-	  	'title' => 'Visitor',
-	  	'icon' => 'fa-line-chart',
-	  	'link' => base_url('admin/visitor_list'),
-	  	'list' => array(
-	  		array(
-	  			'title' => 'All Visited',
-	  			'icon' => 'fa-line-chart',
-	  			'link' => base_url('admin/visitor_list'),
-	  		),
-	  		array(
-	  			'title' => 'Vistor',
-	  			'icon' => 'fa-line-chart',
-	  			'link' => base_url('admin/visitor_ip'),
-	  		)
-	  	)
-	  ),
-	  array(
-	  	'title' => 'Media',
-	  	'icon' => 'fa-picture-o',
-	  	'link' => base_url('admin/media_gallery/gallery')
-	  ),
-	  array(
 	    'title' => 'Configuration',
 	    'icon' => 'fa-cog',
 	    'link' => base_url('admin/config/'),

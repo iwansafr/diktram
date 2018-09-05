@@ -616,8 +616,7 @@ class Ecrud extends CI_Model
 				$this->data_model->join($this->jointable['table'],$this->jointable['condition'], $this->jointable['field']);
 			}
 			$data = $this->data_model->get_data_list($this->table, $this->field, $this->getInput(), $this->limit);
-		}else if($this->init == 'edit')
-		{
+		}else if($this->init == 'edit'){
 			$data = $this->data_model->get_one_data($this->table, 'WHERE id = '.$this->id);
 		}
 		return $data;
