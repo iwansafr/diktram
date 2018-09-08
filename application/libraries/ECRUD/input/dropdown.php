@@ -26,6 +26,7 @@ if(!empty($field))
 			'selected' => $data_value
 		);
 
+
 	if(!empty($this->attribute[$field]))
 	{
 		$attr = $this->attribute[$field];

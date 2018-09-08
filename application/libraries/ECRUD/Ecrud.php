@@ -2,27 +2,28 @@
 
 class Ecrud extends CI_Model
 {
-  public function __construct()
-  {
-  	parent::__construct();
-    $this->load->model('data_model');
-    $this->load->helper('url');
-    $this->load->helper('html');
-    $this->load->helper('email');
-    $this->load->helper('form');
-    $this->load->library('form_validation');
-    $this->load->model('admin/admin_model');
-    $this->load->model('config_model');
-    $this->load->model('user/user_model');
-    $this->load->library('upload');
-    $this->load->library('pagination');
-  }
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('data_model');
+		$this->load->helper('url');
+		$this->load->helper('html');
+		$this->load->helper('email');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->model('admin/admin_model');
+		$this->load->model('config_model');
+		$this->load->model('user/user_model');
+		$this->load->library('upload');
+		$this->load->library('pagination');
+	}
 
 	var $table         = '';
 	var $formName      = 'form_1';
 	var $view          = '';
 	var $init          = '';
 	var $heading       = '';
+	var $edit_status   = true;
 	var $paramname     = '';
 	var $where         = '';
 	var $edit_link     = 'edit/';
@@ -51,6 +52,7 @@ class Ecrud extends CI_Model
 	var $value         = array();
 	var $startCollapse = array();
 	var $endCollapse   = array();
+	var $collapse      = array();
 	var $param         = array();
 	var $plaintext     = array();
 	var $selected      = array();
@@ -81,14 +83,14 @@ class Ecrud extends CI_Model
 	}
 
 	public function join($table = '', $cond = '', $field = '')
-  {
-    if(!empty($table) && !empty($cond) && !empty($field))
-    {
-      $this->jointable['table']     = $table;
-      $this->jointable['condition'] = $cond;
-      $this->jointable['field']     = $field;
-    }
-  }
+	{
+		if(!empty($table) && !empty($cond) && !empty($field))
+		{
+			$this->jointable['table']     = $table;
+			$this->jointable['condition'] = $cond;
+			$this->jointable['field']     = $field;
+		}
+	}
 
 	public function setLimit($limit = 0)
 	{
@@ -129,17 +131,18 @@ class Ecrud extends CI_Model
 
 	public function open_collapse($id = 'collapse1', $title = 'Collapsible Panel', $type = 'default')
 	{
+		$collapse = !empty($this->collapse[$id]) ? 'collapse' : '';
 		?>
 		<br>
 		<div class="panel-group">
-		  <div class="panel panel-<?php echo $type ?>">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" href="#<?php echo $id; ?>"><?php echo $title ?></a>
-		      </h4>
-		    </div>
-		    <div id="<?php echo $id ?>" class="panel-collapse collapse">
-		      <div class="panel-body">
+			<div class="panel panel-<?php echo $type ?>">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" href="#<?php echo $id; ?>"><?php echo $title ?></a>
+					</h4>
+				</div>
+				<div id="<?php echo $id ?>" class="panel-collapse <?php echo $collapse ?>">
+					<div class="panel-body">
 
 		<?php
 	}
@@ -150,7 +153,7 @@ class Ecrud extends CI_Model
 					</div>
 					<div class="panel-footer">Panel Footer</div>
 				</div>
-		  </div>
+			</div>
 		</div>
 		<?php
 	}
@@ -182,6 +185,14 @@ class Ecrud extends CI_Model
 		}
 	}
 
+	public function setEditStatus($edit_status = true)
+	{
+		if(is_bool($edit_status))
+		{
+			$this->edit_status = $edit_status;
+		}
+	}
+
 	public function setHeading($heading = '')
 	{
 		$this->heading = $heading;
@@ -195,10 +206,10 @@ class Ecrud extends CI_Model
 
 	public function get_all($sql = '')
 	{
-    if(!empty($sql))
-    {
-      return $this->db->query($sql)->result_array();
-    }
+		if(!empty($sql))
+		{
+			return $this->db->query($sql)->result_array();
+		}
 	}
 
 	public function tableOptions($field = '', $table = '', $index= '', $label = '', $ex = '')
@@ -234,7 +245,6 @@ class Ecrud extends CI_Model
 			}
 		}
 	}
-
 	public function setOptions($field = '',$options = array())
 	{
 		if(!empty($field) && !empty($options))
@@ -355,7 +365,7 @@ class Ecrud extends CI_Model
 				{
 					if(!empty($get))
 					{
-						$this->link['link_get'][$field]	= $get;
+						$this->link['link_get'][$field] = $get;
 					}
 					$this->link[$field] = $link;
 				}
@@ -417,7 +427,7 @@ class Ecrud extends CI_Model
 
 	public function setRequired($input = array())
 	{
-		if(!empty($input))
+		if(!empty($input) && is_array($input))
 		{
 			foreach ($input as $key => $value)
 			{
@@ -427,6 +437,14 @@ class Ecrud extends CI_Model
 					{
 						$this->required[$value] = 'required';
 					}
+				}
+			}
+		}else{
+			if($input == 'All')
+			{
+				foreach ($this->input as $ikey => $ivalue)
+				{
+					$this->required[$ivalue['text']] = 'required';
 				}
 			}
 		}
@@ -445,6 +463,21 @@ class Ecrud extends CI_Model
 					{
 						$this->startCollapse['title'][$field] = $title;
 					}
+				}
+			}
+		}
+	}
+
+	public function setCollapse($field = '', $collapse = FALSE)
+	{
+		$title = $this->startCollapse['title'];
+		if(!empty($title))
+		{
+			foreach ($title as $key => $value)
+			{
+				if($key == $field)
+				{
+					$this->collapse[$field] = $collapse;
 				}
 			}
 		}
@@ -668,7 +701,11 @@ class Ecrud extends CI_Model
 								<?php
 								if($this->init == 'edit')
 								{
-									echo !empty($this->id) ? 'Edit ' : 'Add '; echo $this->heading;
+									if(!empty($this->edit_status))
+									{
+										echo !empty($this->id) ? 'Edit ' : 'Add ';
+									}
+									echo $this->heading;
 								}else{
 									echo $this->heading;
 								}
@@ -767,19 +804,19 @@ class Ecrud extends CI_Model
 							<!-- <button class="btn btn-default" onclick="window.history.back();" data-toggle="tooltip" title="go back"><i class="fa fa-arrow-left"></i></button> -->
 							<?php
 							echo form_button(array(
-					      'name'    => $this->formName,
-					      'id'      => 'submit',
-					      'value'   => 'true',
-					      'type'    => 'success',
-					      'content' => '<i class="fa fa-floppy-o"></i> submit',
-					      'class'   => 'btn btn-success'));
+								'name'    => $this->formName,
+								'id'      => 'submit',
+								'value'   => 'true',
+								'type'    => 'success',
+								'content' => '<i class="fa fa-floppy-o"></i> submit',
+								'class'   => 'btn btn-success'));
 							echo form_button(array(
-					      'name'    => 'reset',
-					      'id'      => 'reset',
-					      'value'   => 'true',
-					      'type'    => 'reset',
-					      'content' => '<i class="fa fa-undo"></i> reset',
-					      'class'   => 'btn btn-warning'));
+								'name'    => 'reset',
+								'id'      => 'reset',
+								'value'   => 'true',
+								'type'    => 'reset',
+								'content' => '<i class="fa fa-undo"></i> reset',
+								'class'   => 'btn btn-warning'));
 							?>
 						</div>
 					</div>
@@ -918,7 +955,7 @@ class Ecrud extends CI_Model
 																	include 'input/hidden.php';
 																	break;
 															}
-														echo '</td>'	;
+														echo '</td>'  ;
 													}
 												}
 												if($this->edit == true)
@@ -1103,41 +1140,41 @@ class Ecrud extends CI_Model
 									{
 										$module = !empty($this->table) ? 'modules/'.$this->table : 'uploads';
 										$dir = FCPATH.'images/'.$module.'/'.$dir_image.'/';
-							      if(!is_dir($dir))
-							      {
-							        mkdir($dir, 0777,1);
-							      }
-						        $ext = pathinfo($_FILES[$upload[$i]]['name']);
-						        $file_name = $_POST[$u_value].'_'.time().'.'.$ext['extension'];
-						        if($this->init == 'edit')
-						        {
-						        	$file_name_exist = $this->data_model->get_one($this->table, $u_value, "WHERE {$u_value} = '{$file_name}'");
-						        }
-						        if(empty($_POST[$u_value]) || empty($file_name_exist))
-						        {
-						        	foreach(glob($dir.'/*') as $file)
+										if(!is_dir($dir))
+										{
+											mkdir($dir, 0777,1);
+										}
+										$ext = pathinfo($_FILES[$upload[$i]]['name']);
+										$file_name = $_POST[$u_value].'_'.time().'.'.$ext['extension'];
+										if($this->init == 'edit')
+										{
+											$file_name_exist = $this->data_model->get_one($this->table, $u_value, "WHERE {$u_value} = '{$file_name}'");
+										}
+										if(empty($_POST[$u_value]) || empty($file_name_exist))
+										{
+											foreach(glob($dir.'/*') as $file)
 											{
 												unlink($file);
 											}
-						        }
-						        copy($_FILES[$upload[$i]]['tmp_name'], $dir.$file_name);
-						        if($this->init == 'edit')
-						        {
-						        	$update_file = array($u_value => $file_name);
-						        	$this->data_model->set_data($this->table, $dir_image, $update_file);
-						        }else if($this->init == 'param')
-						        {
-							        foreach ($_POST as $dp_key => $dp_value)
-							        {
-							        	if($dp_key=='image')
-							        	{
-							        		$_POST[$dp_key] = $file_name;
-							        	}
-							        }
-							        $data_param['value'] = json_encode($_POST);
-							        $data_param['name']  = $dir_image;
-							        $this->data_model->set_param($this->table, $dir_image, $data_param);
-						        }
+										}
+										copy($_FILES[$upload[$i]]['tmp_name'], $dir.$file_name);
+										if($this->init == 'edit')
+										{
+											$update_file = array($u_value => $file_name);
+											$this->data_model->set_data($this->table, $dir_image, $update_file);
+										}else if($this->init == 'param')
+										{
+											foreach ($_POST as $dp_key => $dp_value)
+											{
+												if($dp_key=='image')
+												{
+													$_POST[$dp_key] = $file_name;
+												}
+											}
+											$data_param['value'] = json_encode($_POST);
+											$data_param['name']  = $dir_image;
+											$this->data_model->set_param($this->table, $dir_image, $data_param);
+										}
 									}
 									$i++;
 								}
@@ -1168,59 +1205,59 @@ class Ecrud extends CI_Model
 									{
 										$module = !empty($this->table) ? 'modules/'.$this->table : 'uploads';
 										$dir = FCPATH.'images/'.$module.'/gallery'.'/'.$dir_image.'/';
-							      if(!is_dir($dir))
-							      {
-							        mkdir($dir, 0777,1);
-							      }
-							      $exts = array();
-							      $files_name = array();
-							      foreach ($_FILES[$uploads[$i]]['name'] as $n_key => $n_value)
-							      {
-						        	$exts[$n_key]       = pathinfo($n_value);
-						        	$files_name[$n_key] = $_POST[$u_value].'_'.$n_key.'_'.time().'.'.$exts[$n_key]['extension'];
-							      }
-							      $files_upload = array();
-							      $j = 0;
-							      foreach ($_FILES[$uploads[$i]]['tmp_name'] as $n_key => $n_value)
-							      {
-							      	$files_upload[$j]['tmp'] = $n_value;
-							      	$j++;
-							      }
-							      $j = 0;
-					        	foreach ($files_name as $f_key => $f_value)
-					        	{
-					        		$files_upload[$j]['name'] = $f_value;
-					        		$j++;
-					        	}
-					        	if(!empty($files_upload))
-					        	{
-						        	foreach(glob($dir.'/*') as $file)
+										if(!is_dir($dir))
+										{
+											mkdir($dir, 0777,1);
+										}
+										$exts = array();
+										$files_name = array();
+										foreach ($_FILES[$uploads[$i]]['name'] as $n_key => $n_value)
+										{
+											$exts[$n_key]       = pathinfo($n_value);
+											$files_name[$n_key] = $_POST[$u_value].'_'.$n_key.'_'.time().'.'.$exts[$n_key]['extension'];
+										}
+										$files_upload = array();
+										$j = 0;
+										foreach ($_FILES[$uploads[$i]]['tmp_name'] as $n_key => $n_value)
+										{
+											$files_upload[$j]['tmp'] = $n_value;
+											$j++;
+										}
+										$j = 0;
+										foreach ($files_name as $f_key => $f_value)
+										{
+											$files_upload[$j]['name'] = $f_value;
+											$j++;
+										}
+										if(!empty($files_upload))
+										{
+											foreach(glob($dir.'/*') as $file)
 											{
 												unlink($file);
 											}
-					        	}
-					        	foreach ($files_upload as $fu_key => $fu_value)
-					        	{
-					        		copy($fu_value['tmp'], $dir.$fu_value['name']);
-					        	}
-							      $file_name = json_encode($files_name);
-						        if($this->init == 'edit')
-						        {
-						        	$update_file = array($u_value => $file_name);
-						        	$this->data_model->set_data($this->table, $dir_image, $update_file);
-						        }else if($this->init == 'param')
-						        {
-							        foreach ($_POST as $dp_key => $dp_value)
-							        {
-							        	if($dp_key=='image')
-							        	{
-							        		$_POST[$dp_key] = $file_name;
-							        	}
-							        }
-							        $data_param['value'] = json_encode($_POST);
-							        $data_param['name']  = $dir_image;
-							        $this->data_model->set_param($this->table, $dir_image, $data_param);
-						        }
+										}
+										foreach ($files_upload as $fu_key => $fu_value)
+										{
+											copy($fu_value['tmp'], $dir.$fu_value['name']);
+										}
+										$file_name = json_encode($files_name);
+										if($this->init == 'edit')
+										{
+											$update_file = array($u_value => $file_name);
+											$this->data_model->set_data($this->table, $dir_image, $update_file);
+										}else if($this->init == 'param')
+										{
+											foreach ($_POST as $dp_key => $dp_value)
+											{
+												if($dp_key=='image')
+												{
+													$_POST[$dp_key] = $file_name;
+												}
+											}
+											$data_param['value'] = json_encode($_POST);
+											$data_param['name']  = $dir_image;
+											$this->data_model->set_param($this->table, $dir_image, $data_param);
+										}
 									}
 									$i++;
 								}
@@ -1329,10 +1366,10 @@ class Ecrud extends CI_Model
 	}
 
 	/*=====================================================
-	 * $data[]	= array(
-	 			'id'			=> $id
-	 		, 'par_id'	=> $par_id
-	 		, 'title'		=> $title);
+	 * $data[]  = array(
+				'id'      => $id
+			, 'par_id'  => $par_id
+			, 'title'   => $title);
 	 *====================================================*/
 	function array_path($data, $par_id = 0, $separate = ' / ', $prefix = '', $load_parent = '')
 	{
@@ -1347,7 +1384,7 @@ class Ecrud extends CI_Model
 					$output[$dt['id']] = $text;
 				}else{
 					$output[$dt['id']] = ($par_id==0) ? $prefix.$dt['title'] : $prefix.$separate.$dt['title'];
-					$text	= ($par_id==0) ? $prefix.$load_parent : $prefix.$separate.$load_parent;
+					$text = ($par_id==0) ? $prefix.$load_parent : $prefix.$separate.$load_parent;
 				}
 				$r = $this->array_path($data, $dt['id'], $separate, $text, $load_parent);
 				if(!empty($r)) {
@@ -1361,7 +1398,7 @@ class Ecrud extends CI_Model
 	function createOption($arr, $select='')
 	{
 		$output = '';
-		$valueiskey	= $check_first = false;
+		$valueiskey = $check_first = false;
 		foreach((array)$arr AS $key => $dt){
 			if(is_array($dt)){
 				list($value, $caption) = array_values($dt);

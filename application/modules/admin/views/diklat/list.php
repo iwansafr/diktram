@@ -14,9 +14,7 @@ $form->addInput('id','plaintext');
 $form->addInput('nama','plaintext');
 $form->addInput('tmpt_lahir','plaintext');
 $form->setLabel('tmpt_lahir','Tempat Lahir');
-$form->addInput('accepted','link');
-$form->setLink('accepted',base_url('admin/diklat_list'), 'id');
-$form->setPlainText('accepted','<button class="btn btn-sm btn-primary">terima</button>');
+$form->addInput('accepted','checkbox');
 $form->setDelete(True);
 ?>
 

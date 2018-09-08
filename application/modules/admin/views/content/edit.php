@@ -35,12 +35,14 @@ $form->setAccept('image', 'image/jpeg,image/png');
 $form->addInput('image_link','text');
 $form->startCollapse('image_link', 'add image link');
 $form->endCollapse('image_link');
+$form->setCollapse('image_link', 1);
 
 $form->addInput('images','gallery');
 $form->setAccept('images', 'image/jpeg,image/png');
 $form->setAttribute('images','multiple');
 $form->startCollapse('images', 'Gallery');
 $form->endCollapse('images');
+$form->setCollapse('images', 1);
 
 $form->addInput('icon','text');
 
@@ -55,6 +57,7 @@ $form->addInput('description','textarea');
 $form->setLabel('description','Meta Description');
 $form->startCollapse('keyword', 'meta');
 $form->endCollapse('description');
+$form->setCollapse('keyword', 1);
 
 $form->addInput('intro','textarea');
 
@@ -68,6 +71,7 @@ $form->setLabel('tag_ids', 'Tag : ');
 $form->setAttribute('tag_ids', array('data-role'=>'tagsinput','placeholder'=>'separate with coma'));
 $form->startCollapse('tag_ids', 'Tag');
 $form->endCollapse('tag_ids');
+$form->setCollapse('tag_ids', 1);
 if(!empty($get_id))
 {
   if(empty($_POST['tag_ids']))

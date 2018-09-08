@@ -19,4 +19,8 @@ class Diklat extends CI_Controller
 	{
 		$this->load->view('home/index');
 	}
+	public function cert()
+	{
+		$this->load->view('home/index');
+	}
 }

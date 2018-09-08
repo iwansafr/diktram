@@ -18,6 +18,21 @@ function array_to_string($data = array())
 	}
 }
 
+function array_start_one($data = array())
+{
+	if(!empty($data) && is_array($data))
+	{
+		$i = 1;
+		$new = array();
+		foreach ($data as $key => $value)
+		{
+			$new[$i] = $value;
+			$i++;
+		}
+		return $new;
+	}
+}
+
 function string_to_array($data = '')
 {
 	if(!empty($data))
