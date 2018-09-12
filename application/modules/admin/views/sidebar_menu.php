@@ -20,6 +20,11 @@ if(!empty($admin_templates))
 	        'link' => base_url('admin/diklat_list')
 	      ),
 	      array(
+	        'title' => 'Peserta',
+	        'icon' => 'fa-user',
+	        'link' => base_url('admin/diklat_peserta')
+	      ),
+	      array(
 	        'title' => 'Sertifikat',
 	        'icon' => 'fa-user',
 	        'link' => base_url('admin/diklat_cert')

@@ -14,6 +14,7 @@ class Diklat extends CI_Controller
     $this->load->library('ECRUD/ecrud');
     $this->load->library('pagination');
     $this->load->library('esg');
+    $this->load->model('diklat_model');
 	}
 	public function index()
 	{
@@ -22,5 +23,13 @@ class Diklat extends CI_Controller
 	public function cert()
 	{
 		$this->load->view('home/index');
+	}
+	public function success($str = '')
+	{
+		if(!empty($str))
+		{
+			$data['kode'] = $str;
+			$this->load->view('home/index',$data);
+		}
 	}
 }

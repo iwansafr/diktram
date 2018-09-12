@@ -13,7 +13,7 @@ $site_value = json_decode($site_value,1);
 
 <link rel="stylesheet" href="<?php echo base_url().'templates/admin_lte/';?>bootstrap/css/bootstrap.min.css">
 <link href="<?php echo base_url().'templates/admin/'; ?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="<?php echo base_url().'templates/admin/'; ?>css/ionicons.min.css">
+<!-- <link rel="stylesheet" href="<?php echo base_url().'templates/admin/'; ?>css/ionicons.min.css"> -->
 <link rel="stylesheet" href="<?php echo base_url().'templates/admin_lte/';?>dist/css/AdminLTE.min.css">
 <link rel="stylesheet" href="<?php echo base_url().'templates/admin_lte/';?>dist/css/skins/_all-skins.min.css">
 <link rel="stylesheet" href="<?php echo base_url().'templates/admin_lte/';?>plugins/iCheck/flat/blue.css">

@@ -171,17 +171,34 @@ class Admin extends CI_Controller
     }
   }
 
+  public function diklat_cert_detail()
+  {
+    $this->load->view('admin/index');
+  }
+  public function diklat_cert_edit()
+  {
+    $this->load->view('admin/index');
+  }
+  public function diklat_generate()
+  {
+    $this->load->view('admin/index');
+  }
+  public function diklat_peserta()
+  {
+    $this->load->view('admin/index');
+  }
+
   public function diklat_list()
   {
-   $this->load->view('admin/index');
+    $this->load->view('admin/index');
   }
   public function diklat_edit()
   {
-   $this->load->view('admin/index');
+    $this->load->view('admin/index');
   }
   public function diklat_cert()
   {
-   $this->load->view('admin/index');
+    $this->load->view('admin/index');
   }
 
   /*USER*/

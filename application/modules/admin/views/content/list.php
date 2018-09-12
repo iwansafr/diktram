@@ -3,7 +3,7 @@ $form = new ecrud();
 
 $form->setTable('content');
 $form->init('roll');
-
+$form->setHeading('Content List');
 $form->setView('admin/content_list');
 
 $form->search();

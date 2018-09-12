@@ -12,6 +12,8 @@ $form->setField(array('id','nama'));
 
 $form->addInput('id','plaintext');
 $form->addInput('nama','plaintext');
+$form->addInput('photo','thumbnail');
+$form->setImage('photo','diklat');
 $form->addInput('tmpt_lahir','plaintext');
 $form->setLabel('tmpt_lahir','Tempat Lahir');
 $form->addInput('accepted','checkbox');
