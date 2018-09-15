@@ -621,17 +621,19 @@ class Ecrud extends CI_Model
 		$result = FALSE;
 		if(!empty($this->accept))
 		{
-			if(!empty($type))
+			$types = explode(',',$this->accept[$title]);
+		}else{
+			$types = explode(',','.jpg,.jpeg,.png,.bmp,.gif');
+		}
+		if(!empty($type))
+		{
+			foreach ($types as $key => $value)
 			{
-				$types = explode(',',$this->accept[$title]);
-				foreach ($types as $key => $value)
+				if(strtolower($value) == '.'.$type)
 				{
-					if($value == '.'.$type)
-					{
-						$result = TRUE;
-					}else{
-						$this->file_error[$title] = 'your file type is not allowed';
-					}
+					$result = TRUE;
+				}else{
+					$this->file_error[$title] = 'your file type is not allowed';
 				}
 			}
 		}
