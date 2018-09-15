@@ -48,7 +48,7 @@
     <div class="pull-right hidden-xs">
       <!-- <b>Version</b> 2.3.12 -->
     </div>
-    <strong>Supported by <a href="http://esoftgreat.com">esoftgreat</a></strong>
+    <strong> <a href="https://smkwiskarkudus.sch.id">smk wisuda karya kudus</a></strong>
   </footer>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
