@@ -15,8 +15,9 @@ $form->addInput('id','plaintext');
 $form->addInput('nama','plaintext');
 $form->addInput('username','plaintext');
 $form->addInput('created','link');
+$form->setLabel('created','tambah sertifikat');
 $form->setLink('created',base_url('admin/diklat_cert_edit'),'id');
-$form->setPlainText('created','<i class="fa fa-plus"> sertificate</i>');
+$form->setPlainText('created','<i class="fa fa-plus"> tambah sertificate</i>');
 ?>
 
 <div class="box">

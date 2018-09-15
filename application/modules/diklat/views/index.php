@@ -18,6 +18,7 @@
 		$form->setLabel('nama', 'Nama Lengkap');
 
 		$form->addInput('nisn','text');
+		$form->setLabel('nisn','NISN');
 		$form->addInput('email','text');
 		$form->setType('email','email');
 		$form->addInput('tmpt_lahir','text');

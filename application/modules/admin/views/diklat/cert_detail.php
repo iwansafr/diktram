@@ -9,9 +9,6 @@ if(!empty($id))
 		?>
 		<h4><?php echo $data['title'] ?></h4>
 		<p>
-			<iframe src="<?php echo image_module('peserta_cert',$data['id'].DIRECTORY_SEPARATOR.$data['file']) ?>"></iframe>
-		</p>
-		<p>
 			<a href="<?php echo image_module('peserta_cert',$data['id'].DIRECTORY_SEPARATOR.$data['file']) ?>" class="media">download <?php echo $data['file'] ?></a>
 		</p>
 		<p>
