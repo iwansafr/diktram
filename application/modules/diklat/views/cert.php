@@ -105,7 +105,7 @@ if(!empty($user))
 	</style>
 	<div class="container emp-profile">
     <form method="post">
-        <div class="row">
+        <div class="col-md-12">
             <div class="col-md-4">
                 <div class="profile-img">
                     <img src="<?php echo image_module('diklat',$detail['id'].'/'.$detail['photo']) ?>" alt=""/>
@@ -130,7 +130,7 @@ if(!empty($user))
                 <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
             </div>
         </div>
-        <div class="row">
+        <div class="col-md-12">
             <div class="col-md-4">
               <div class="profile-work">
           <!--         <p>WORK LINK</p>
@@ -228,5 +228,5 @@ if(!empty($user))
 	<?php
 }else{
 	echo "\n";
-	msg('you dont have permission to access this site', 'danger');
+	msg('you dont have permission to access this site please <a href="'.base_url('diklat/login').'">login</a>', 'danger');
 }
