@@ -32,4 +32,8 @@ class Diklat extends CI_Controller
 			$this->load->view('home/index',$data);
 		}
 	}
+	public function login()
+	{
+		$this->load->view('home/index');
+	}
 }

@@ -26,6 +26,7 @@ class Ecrud extends CI_Model
 	var $edit_status   = true;
 	var $paramname     = '';
 	var $where         = '';
+	var $file_error    = array();
 	var $edit_link     = 'edit/';
 	var $limit         = 12;
 	var $id            = 0;
@@ -615,6 +616,28 @@ class Ecrud extends CI_Model
 		}
 	}
 
+	public function check_type($type = '', $title = '')
+	{
+		$result = FALSE;
+		if(!empty($this->accept))
+		{
+			if(!empty($type))
+			{
+				$types = explode(',',$this->accept[$title]);
+				foreach ($types as $key => $value)
+				{
+					if($value == '.'.$type)
+					{
+						$result = TRUE;
+					}else{
+						$this->file_error[$title] = 'your file type is not allowed';
+					}
+				}
+			}
+		}
+		return $result;
+	}
+
 	private function getInput($is_array = true)
 	{
 		$input = array();
@@ -1145,35 +1168,37 @@ class Ecrud extends CI_Model
 											mkdir($dir, 0777,1);
 										}
 										$ext = pathinfo($_FILES[$upload[$i]]['name']);
-										$file_name = $_POST[$u_value].'_'.time().'.'.$ext['extension'];
-										if($this->init == 'edit')
+										if($this->check_type($ext['extension'],$u_value))
 										{
-											$file_name_exist = $this->data_model->get_one($this->table, $u_value, "WHERE {$u_value} = '{$file_name}'");
-										}
-										if(empty($_POST[$u_value]) || empty($file_name_exist))
-										{
-											foreach(glob($dir.'/*') as $file)
+											$file_name = $_POST[$u_value].'_'.time().'.'.$ext['extension'];
+											if($this->init == 'edit')
 											{
-												unlink($file);
+												$file_name_exist = $this->data_model->get_one($this->table, $u_value, "WHERE {$u_value} = '{$file_name}'");
 											}
-										}
-										copy($_FILES[$upload[$i]]['tmp_name'], $dir.$file_name);
-										if($this->init == 'edit')
-										{
-											$update_file = array($u_value => $file_name);
-											$this->data_model->set_data($this->table, $dir_image, $update_file);
-										}else if($this->init == 'param')
-										{
-											foreach ($_POST as $dp_key => $dp_value)
+											if(empty($_POST[$u_value]) || empty($file_name_exist))
 											{
-												if($dp_key=='image')
+												foreach(glob($dir.'/*') as $file)
 												{
-													$_POST[$dp_key] = $file_name;
+													unlink($file);
 												}
 											}
-											$data_param['value'] = json_encode($_POST);
-											$data_param['name']  = $dir_image;
-											$this->data_model->set_param($this->table, $dir_image, $data_param);
+											copy($_FILES[$upload[$i]]['tmp_name'], $dir.$file_name);
+											if($this->init == 'edit')
+											{
+												$update_file = array($u_value => $file_name);
+												$this->data_model->set_data($this->table, $dir_image, $update_file);
+											}else if($this->init == 'param'){
+												foreach ($_POST as $dp_key => $dp_value)
+												{
+													if($dp_key=='image')
+													{
+														$_POST[$dp_key] = $file_name;
+													}
+												}
+												$data_param['value'] = json_encode($_POST);
+												$data_param['name']  = $dir_image;
+												$this->data_model->set_param($this->table, $dir_image, $data_param);
+											}
 										}
 									}
 									$i++;

@@ -58,6 +58,7 @@ if(!empty($field))
 			$array_input[$attr] = $attr;
 		}
 	}
+	echo !empty($this->file_error[$field]) ? msg($this->file_error[$field],'danger') : '';
 	echo form_upload($array_input);
 
 	if(!empty($this->id) || ($this->init == 'param'))
