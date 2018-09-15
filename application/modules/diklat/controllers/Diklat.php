@@ -34,6 +34,26 @@ class Diklat extends CI_Controller
 	}
 	public function login()
 	{
-		$this->load->view('home/index');
+		$data['status'] = array();
+		if(!empty($this->input->post()))
+		{
+			$tmp_data = $this->input->post();
+			$peserta  = $this->db->query('SELECT * FROM peserta WHERE username = ? LIMIT 1', array($tmp_data['username']))->row_array();
+			if(!empty($peserta))
+			{
+				if($tmp_data['password'] == $peserta['password'])
+				{
+					$this->session->set_userdata(base_url().'_diklat_logged_in', $peserta);
+					header('Location: '.base_url('diklat/cert'));
+				}else{
+					$data['status']['msg']['alert'] = 'danger';
+					$data['status']['msg']['msg']   = 'password salah';
+				}
+			}else{
+				$data['status']['msg']['alert'] = 'danger';
+				$data['status']['msg']['msg']   = 'username tidak dikenali';
+			}
+		}
+		$this->load->view('home/index', $data);
 	}
 }

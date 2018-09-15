@@ -9,18 +9,19 @@
 		</div>
 		<div class="panel-body">
 			<?php
-			if(!empty($this->input->post()))
+			if(!empty($status))
 			{
-				pr($this->input->post());
-			}?>
+				echo msg($status['msg']['msg'],$status['msg']['alert']);
+			}
+			?>
 			<form action="" method="post">
 				<div class="form-group">
 					<label>username</label>
-					<input type="text" name="username" class="form-control" placeholder="username">
+					<input type="text" name="username" class="form-control" placeholder="username" value="<?php echo $this->input->post('username') ?>">
 				</div>
 				<div class="form-group">
 					<label>password</label>
-					<input type="password" name="password" class="form-control" placeholder="password">
+					<input type="password" name="password" class="form-control" placeholder="password" value="<?php echo $this->input->post('password')?>">
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-sign-in"></i> Login</button>
