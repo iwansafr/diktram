@@ -132,7 +132,7 @@
 		$form->setOptions('pil_2',$jurusan);
 		$form->setLabel('pil_2','Pilihan 2');
 		$form->addInput('photo','file');
-		$form->setAccept('photo', 'image/jpeg,image/png');
+		// $form->setAccept('photo', 'image/jpeg,image/png');
 		$form->startCollapse('pil_1', 'Data Pemilihan Jurusan');
 		$form->endCollapse('photo');
 		$form->setRequired('All');

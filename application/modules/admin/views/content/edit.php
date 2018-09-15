@@ -30,7 +30,7 @@ $form->addInput('author','hidden');
 $form->setValue('author',$this->session->userdata[base_url().'_logged_in']['username']);
 
 $form->addInput('image','upload');
-$form->setAccept('image', 'image/jpeg,image/png');
+// $form->setAccept('image', 'image/jpeg,image/png');
 
 $form->addInput('image_link','text');
 $form->startCollapse('image_link', 'add image link');
@@ -38,7 +38,7 @@ $form->endCollapse('image_link');
 $form->setCollapse('image_link', 1);
 
 $form->addInput('images','gallery');
-$form->setAccept('images', 'image/jpeg,image/png');
+// $form->setAccept('images', 'image/jpeg,image/png');
 $form->setAttribute('images','multiple');
 $form->startCollapse('images', 'Gallery');
 $form->endCollapse('images');

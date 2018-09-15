@@ -632,6 +632,7 @@ class Ecrud extends CI_Model
 				if(strtolower($value) == '.'.$type)
 				{
 					$result = TRUE;
+					break;
 				}else{
 					$this->file_error[$title] = 'your file type is not allowed';
 				}
