@@ -622,11 +622,37 @@ class Ecrud extends CI_Model
 		if(!empty($this->accept))
 		{
 			$types = explode(',',$this->accept[$title]);
+			$data = array();
+			$forbiden = array('*','php','exe','deb');
+			foreach($types AS $c => $d)
+			{
+				$tmp = $d;
+		    if(preg_match('~/~',$tmp))
+		    {
+		    	$tmp = explode('/',$tmp);
+		      $tmp = @$tmp[1];
+		      if(!empty($tmp))
+		      {
+			      if(!in_array($tmp, $forbiden))
+			      {
+		      		if(strtolower($tmp) == 'jpeg')
+		      		{
+		      			$data[] = '.jpg';
+		      		}
+		      		$data[] = '.'.$tmp;
+			      }
+		      }
+		    }else{
+		    	$data[] = $tmp;
+		    }
+			}
+			$types = $data;
 		}else{
 			$types = explode(',','.jpg,.jpeg,.png,.bmp,.gif');
 		}
 		if(!empty($type))
 		{
+			$types = array_unique($types);
 			foreach ($types as $key => $value)
 			{
 				if(strtolower($value) == '.'.$type)
