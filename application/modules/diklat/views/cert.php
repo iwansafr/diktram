@@ -211,7 +211,7 @@ if(!empty($user))
 							    		?>
 							    		<div class="col-md-12">
 							    			<label><?php echo $value['title'] ?></label>
-							    			<p><a href=""><?php echo $value['file'] ?></a></p>
+							    			<p><a href="<?php echo image_module('peserta_cert',$value['id'].'/'.$value['file']) ?>"><?php echo $value['file'] ?></a></p>
 							    			<p><?php echo $value['description'] ?></p>
 							    		</div>
 							    		<?php
