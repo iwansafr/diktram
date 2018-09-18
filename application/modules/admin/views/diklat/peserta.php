@@ -9,7 +9,7 @@ $form->join('diklat','ON(diklat.id=peserta.diklat_id)', 'peserta.id,diklat.nama,
 
 $form->search();
 
-$form->setField(array('id','nama'));
+$form->setField(array('peserta.id','diklat.nama'));
 
 $form->addInput('id','plaintext');
 $form->addInput('nama','plaintext');

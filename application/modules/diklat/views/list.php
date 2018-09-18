@@ -1,12 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-// pr($this->input->post());
 $form = new Ecrud();
 $form->init('roll');
 $form->setTable('diklat');
 
-$form->setView('admin/diklat_list');
+$form->setView('diklat/list');
 
-$form->search();
 
 $form->setField(array('id','nama'));
 
@@ -16,14 +14,8 @@ $form->addInput('photo','thumbnail');
 $form->setImage('photo','diklat');
 $form->addInput('tmpt_lahir','plaintext');
 $form->setLabel('tmpt_lahir','Tempat Lahir');
-$form->addInput('accepted','checkbox');
-$form->setDelete(True);
-$form->setEditLink(base_url('admin/diklat_edit/?id='));
-$form->setEdit(TRUE);
 ?>
-
-<div class="box">
-	<div class="box-body table-responsive">
-		<?php $form->form();?>
-	</div>
-</div>
+<h2>Daftar Calon Peserta</h2>
+<?php
+$form->search();
+$form->form();

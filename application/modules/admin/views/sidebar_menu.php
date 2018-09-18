@@ -15,23 +15,23 @@ if(!empty($admin_templates))
 	    'link' => base_url('admin/diklat_list'),
 	    'list' => array(
 	      array(
-	        'title' => 'Diklat List',
-	        'icon' => 'fa-user',
+	        'title' => 'Calon Peserta',
+	        'icon' => 'fa-address-card-o',
 	        'link' => base_url('admin/diklat_list')
 	      ),
 	      array(
 	        'title' => 'Peserta',
-	        'icon' => 'fa-user',
+	        'icon' => 'fa-address-book-o',
 	        'link' => base_url('admin/diklat_peserta')
 	      ),
 	      array(
 	        'title' => 'Sertifikat',
-	        'icon' => 'fa-user',
+	        'icon' => 'fa-id-badge',
 	        'link' => base_url('admin/diklat_cert')
 	      ),
 	      array(
-	        'title' => 'Diklat Add',
-	        'icon' => 'fa-user',
+	        'title' => 'Tambah Calon Peserta',
+	        'icon' => 'fa-plus',
 	        'link' => base_url('admin/diklat_edit')
 	      )
 	    )

@@ -127,7 +127,10 @@ class Data_model extends CI_Model
       foreach ($field as $fkey => $fvalue)
       {
         $col = $i == 0 ? '(' :'';
-
+        // if(!empty($this->jointable))
+        // {
+        //   $fvalue = $this->jointable['table'].'.'.$fvalue;
+        // }
         $add_sql .= " OR {$col} {$fvalue} LIKE '%{$keyword}%'";
         $i++;
       }
@@ -146,6 +149,11 @@ class Data_model extends CI_Model
     if($keyword != NULL)
     {
       $sql = " WHERE `id` = ".@intval($keyword)." {$add_sql}";
+      if(!empty($this->jointable))
+      {
+        $add = $this->jointable['table'];
+        $sql = " WHERE $add.id = ".@intval($keyword)." {$add_sql}";
+      }
     }
 
     if(!empty($this->where))
@@ -181,11 +189,26 @@ class Data_model extends CI_Model
       {
         $where = $this->where;
         $total_rows = $this->db->query("SELECT `id` FROM `{$table}`  WHERE $where")->num_rows();
+        if(!empty($this->jointable))
+        {
+          $jointable  = $this->jointable['table'];
+          $condition  = $this->jointable['condition'];
+          $joinfield  = $this->jointable['field'];
+          $total_rows = $this->db->query("SELECT {$joinfield} FROM `{$table}` LEFT JOIN {$jointable} {$condition} $sql {$this->orderby}")->num_rows();
+        }
       }else{
         $total_rows = $this->db->count_all($table);
       }
     }else{
-      $query = $this->db->query("SELECT `id` FROM `{$table}`  WHERE `id` = '{$keyword}' {$add_sql}");
+      $q = "SELECT `id` FROM `{$table}`  WHERE `id` = '{$keyword}' {$add_sql}";
+      if(!empty($this->jointable))
+      {
+        $jointable = $this->jointable['table'];
+        $condition = $this->jointable['condition'];
+        $joinfield = $this->jointable['field'];
+        $q         = "SELECT {$joinfield} FROM `{$table}` LEFT JOIN {$jointable} {$condition} $sql {$this->orderby}";
+      }
+      $query = $this->db->query($q);
       $total_rows = $query->num_rows();
       if(!empty($this->where))
       {
