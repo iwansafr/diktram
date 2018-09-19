@@ -171,6 +171,16 @@ class Admin extends CI_Controller
     }
   }
 
+  public function diklat_keterampilan()
+  {
+    $this->load->view('admin/index');
+  }
+
+  public function diklat_peserta_excel()
+  {
+    $this->load->view('diklat/peserta_excel');
+  }
+
   public function diklat_cert_detail()
   {
     $this->load->view('admin/index');
@@ -184,6 +194,10 @@ class Admin extends CI_Controller
     $this->load->view('admin/index');
   }
   public function diklat_peserta()
+  {
+    $this->load->view('admin/index');
+  }
+  public function diklat_peserta_edit()
   {
     $this->load->view('admin/index');
   }

@@ -4,7 +4,7 @@ if(!empty($field))
 {
 	if($this->init == 'edit' || $this->init == 'param')
 	{
-		if(!empty($this->id))
+		if(!empty($this->id) && empty($this->value[$field]))
 		{
 			$data_value =  $data[$field];
 			echo form_label(ucfirst($label), $label);

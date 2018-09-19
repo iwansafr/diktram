@@ -1,18 +1,27 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-<div class="col-md-2">
-
-</div>
-<div class="col-md-8">
-	<?php
-	echo '<h2>Formulir Pendaftaran</h2>';
-	$form = new Ecrud();
-	if(!empty($this->session->userdata(base_url().'_logged_in')))
-	{
-		$id = $this->input->get('id');
-		$form->setId($id);
-	}
+$id = @intval($this->input->get('id'));
+if(!empty($id))
+{
+	$form = new ecrud();
+	$form->setId($id);
 	$form->init('edit');
-	$form->setHeading('Peserta');
+	$form->setTable('peserta');
+	$form->setHeading('Peserta Account');
+	$form->setEditStatus(false);
+	$diklat_id = $this->db->query('SELECT diklat_id FROM peserta WHERE id = ? LIMIT 1', array($id))->row_array();
+	$diklat_id = $diklat_id['diklat_id'];
+	$nama = $this->db->query('SELECT nama FROM diklat WHERE id = ? LIMIT 1', array($diklat_id))->row_array();
+	$form->addInput('username', 'text');
+	$form->addInput('password', 'text');
+	$form->setEncrypt(FALSE);
+	$form->form();
+
+	$form = new Ecrud();
+
+	$form->setId($diklat_id);
+	$form->init('edit');
+	$form->setHeading('Peserta Detail');
 	$form->setTable('diklat');
 	$form->setEditStatus(false);
 	$form->addInput('jalur', 'dropdown');
@@ -152,35 +161,8 @@
 	// $form->setAccept('photo', 'image/jpeg,image/png');
 	$form->startCollapse('pil_1', 'Data Pemilihan Jurusan');
 	$form->endCollapse('photo');
-	$form->setRequired('All');
+	// $form->setRequired('All');
 	$form->form();
-
-	// pr($this->input->post());
-	$last_id = $this->data_model->LAST_INSERT_ID();
-	// pr($last_id);
-	if(!empty($last_id))
-	{
-		$str   = 'KD-DK-';
-		$zero  = 4;
-		$l_id  = strlen($last_id);
-		$zero  = $zero - $l_id;
-		for($i = 0;$i<$zero;$i++)
-		{
-			$str .= '0';
-		}
-		$str .= $last_id;
-		$this->data_model->set_data('diklat', $last_id, array('kode'=>$str));
-		if(!empty($str))
-		{
-			?>
-			<script type="text/javascript">
-				document.location.href = '<?php echo base_url();?>diklat/success/<?php echo $str?>';
-			</script>
-			<?php
-		}
-	}
-	?>
-</div>
-<div class="col-md-2">
-
-</div>
+}else{
+	echo msg('id peserta tidak diketahui');
+}

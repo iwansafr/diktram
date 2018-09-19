@@ -15,12 +15,15 @@ $form->addInput('id','plaintext');
 $form->addInput('nama','plaintext');
 $form->addInput('username','plaintext');
 $form->addInput('password','plaintext');
+$form->setEdit(TRUE);
+$form->setEditLink(base_url('admin/diklat_peserta_edit?id='));
 $form->setDelete(TRUE);
 ?>
 
 <div class="box">
 	<div class="box-body table-responsive">
 		<a href="<?php echo base_url('admin/diklat_generate') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-random"></i> generate password</button></a>
+		<a href="<?php echo base_url('admin/diklat_peserta_excel') ?>"><button class="btn btn-sm btn-success"><i class="fa fa-file-excel-o"></i> excel</button></a>
 		<?php $form->form();?>
 	</div>
 </div>

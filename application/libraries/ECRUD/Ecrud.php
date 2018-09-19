@@ -26,6 +26,7 @@ class Ecrud extends CI_Model
 	var $edit_status   = true;
 	var $paramname     = '';
 	var $where         = '';
+	var $encrypt       = TRUE;
 	var $file_error    = array();
 	var $edit_link     = 'edit/';
 	var $limit         = 12;
@@ -286,6 +287,11 @@ class Ecrud extends CI_Model
 				}
 			}
 		}
+	}
+
+	public function setEncrypt($encrypt = TRUE)
+	{
+		$this->encrypt = $encrypt;
 	}
 
 	public function setElementId($field = '', $id = '')
@@ -1117,7 +1123,14 @@ class Ecrud extends CI_Model
 						unset($_POST[$this->security->get_csrf_token_name()]);
 						if(isset($_POST['password']))
 						{
-							$_POST['password'] = encrypt($_POST['password']);
+							if(empty($this->encrypt))
+							{
+								pr('tidak di encrypt');
+								$_POST['password'] = $_POST['password'];
+							}else{
+								$_POST['password'] = encrypt($_POST['password']);
+								pr('di encrypt');
+							}
 						}
 						if(!empty($this->table))
 						{

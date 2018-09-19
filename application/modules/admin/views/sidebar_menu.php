@@ -33,6 +33,11 @@ if(!empty($admin_templates))
 	        'title' => 'Tambah Calon Peserta',
 	        'icon' => 'fa-plus',
 	        'link' => base_url('admin/diklat_edit')
+	      ),
+	      array(
+	        'title' => 'Diklat Keterampilan',
+	        'icon' => 'fa-bandcamp',
+	        'link' => base_url('admin/diklat_keterampilan')
 	      )
 	    )
 	  ),
