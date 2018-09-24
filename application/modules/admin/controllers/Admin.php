@@ -185,6 +185,10 @@ class Admin extends CI_Controller
   {
     $this->load->view('admin/index');
   }
+  public function diklat_cert_cat()
+  {
+    $this->load->view('admin/index');
+  }
   public function diklat_cert_edit()
   {
     $this->load->view('admin/index');

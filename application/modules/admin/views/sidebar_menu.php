@@ -30,6 +30,11 @@ if(!empty($admin_templates))
 	        'link' => base_url('admin/diklat_cert')
 	      ),
 	      array(
+	        'title' => 'Jenis Sertifikat',
+	        'icon' => 'fa-id-badge',
+	        'link' => base_url('admin/diklat_cert_cat')
+	      ),
+	      array(
 	        'title' => 'Tambah Calon Peserta',
 	        'icon' => 'fa-plus',
 	        'link' => base_url('admin/diklat_edit')

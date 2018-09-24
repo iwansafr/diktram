@@ -121,7 +121,7 @@ if(!empty($user))
                   <?php echo $detail['nama'] ?>
                 </h5>
                 <h6>
-                  <?php echo $detail['nisn'] ?>
+                  ...
                 </h6>
                 <p class="proile-rating">Total Sertifikat : <span><?php echo $tot_certificate; ?></span></p>
               </div>
@@ -206,15 +206,18 @@ if(!empty($user))
 							    </div>
 							    <div role="tabpanel" class="tab-pane" id="settings">
 							    	<?php
-							    	foreach ($certificate as $key => $value)
+							    	if(!empty($certificate))
 							    	{
-							    		?>
-							    		<div class="col-md-12">
-							    			<label><?php echo $value['title'] ?></label>
-							    			<p><a href="<?php echo image_module('peserta_cert',$value['id'].'/'.$value['file']) ?>"><?php echo $value['file'] ?></a></p>
-							    			<p><?php echo $value['description'] ?></p>
-							    		</div>
-							    		<?php
+								    	foreach ($certificate as $key => $value)
+								    	{
+								    		?>
+								    		<div class="col-md-12">
+								    			<label><?php echo $value['title'] ?></label>
+								    			<p><a href="<?php echo image_module('peserta_cert',$value['id'].'/'.$value['file']) ?>"><?php echo $value['file'] ?></a></p>
+								    			<p><?php echo $value['description'] ?></p>
+								    		</div>
+								    		<?php
+								    	}
 							    	}
 							    	?>
 							    </div>

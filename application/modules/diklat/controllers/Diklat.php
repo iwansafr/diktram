@@ -24,6 +24,15 @@ class Diklat extends CI_Controller
 	{
 		$this->load->view('home/index');
 	}
+	public function profile()
+	{
+		$this->load->view('home/index');
+	}
+	public function peserta()
+	{
+		$this->load->view('home/index');
+	}
+
 	public function cert()
 	{
 		$this->load->view('home/index');
