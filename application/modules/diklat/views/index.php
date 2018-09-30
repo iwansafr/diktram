@@ -50,73 +50,6 @@
 	$form->startCollapse('nama', 'Data Calon Siswa');
 	$form->endCollapse('alamat_sekolah');
 
-
-	$pendidikan = array('SD','SLTP','D1','SLTA','D2','D3','D4','S1','S2','S3');
-	$pekerjaan = array(
-		'Tidak Bekerja (di rumah saja)',
-		'PNS',
-		'Guru',
-		'Dosen',
-		'TNI',
-		'POLRI',
-		'Dokter',
-		'Bidan',
-		'Perawat',
-		'Pegawai Swasta',
-		'Wiraswasta/Pengusaha',
-		'Buruh',
-		'Sopir',
-		'IRT (Ibur Rumah Tangga)'
-	);
-
-	$form->addInput('nama_ayah','text');
-	$form->setLabel('nama_ayah','Nama Ayah');
-
-	$form->addInput('tmpt_lahir_ayah','text');
-	$form->setLabel('tmpt_lahir_ayah', 'Tempat Lahir Ayah');
-
-	$form->addInput('tgl_lahir_ayah','text');
-	$form->setType('tgl_lahir_ayah','date');
-	$form->setValue('tgl_lahir_ayah', '1990-01-01');
-	$form->setLabel('tgl_lahir_ayah', 'Tanggal Lahir Ayah');
-
-	$form->addInput('pdd_terakhir_ayah','dropdown');
-	$form->setLabel('pdd_terakhir_ayah','Pendidikan Terakhir Ayah');
-	$form->setOptions('pdd_terakhir_ayah',array_start_one($pendidikan));
-	$form->addInput('pekerjaan_ayah','dropdown');
-	$form->setLabel('pekerjaan_ayah','Pekerjaan Ayah');
-	$form->setOptions('pekerjaan_ayah',array_start_one($pekerjaan));
-
-	$form->addInput('hp_ayah', 'text');
-	$form->setType('hp_ayah','number');
-	$form->setLabel('hp_ayah','No Hp Ayah');
-	$form->startCollapse('nama_ayah', 'Data Orang Tua - Ayah');
-	$form->endCollapse('hp_ayah');
-
-	$form->addInput('nama_ibu','text');
-	$form->setLabel('nama_ibu','Nama Ibu');
-
-	$form->addInput('tmpt_lahir_ibu','text');
-	$form->setLabel('tmpt_lahir_ibu', 'Tempat Lahir Ibu');
-
-	$form->addInput('tgl_lahir_ibu','text');
-	$form->setType('tgl_lahir_ibu','date');
-	$form->setValue('tgl_lahir_ibu', '1990-01-01');
-	$form->setLabel('tgl_lahir_ibu', 'Tanggal Lahir Ibu');
-
-	$form->addInput('pdd_terakhir_ibu','dropdown');
-	$form->setLabel('pdd_terakhir_ibu','Pendidikan Terakhir Ibu');
-	$form->setOptions('pdd_terakhir_ibu',array_start_one($pendidikan));
-	$form->addInput('pekerjaan_ibu','dropdown');
-	$form->setLabel('pekerjaan_ibu','Pekerjaan Ibu');
-	$form->setOptions('pekerjaan_ibu',array_start_one($pekerjaan));
-
-	$form->addInput('hp_ibu', 'text');
-	$form->setType('hp_ibu','number');
-	$form->setLabel('hp_ibu','No Hp Ibu');
-	$form->startCollapse('nama_ibu', 'Data Orang Tua - Ibu');
-	$form->endCollapse('hp_ibu');
-
 	$form->addInput('prov','text');
 	$form->setLabel('prov','Provinsi');
 	$form->addInput('kab','text');
@@ -144,13 +77,10 @@
 
 	$form->addInput('pil_1', 'dropdown');
 	$form->setOptions('pil_1',$jurusan);
-	$form->setLabel('pil_1','Pilihan 1');
-	$form->addInput('pil_2', 'dropdown');
-	$form->setOptions('pil_2',$jurusan);
-	$form->setLabel('pil_2','Pilihan 2');
+	$form->setLabel('pil_1','Jenis Diklat');
 	$form->addInput('photo','file');
 	// $form->setAccept('photo', 'image/jpeg,image/png');
-	$form->startCollapse('pil_1', 'Data Pemilihan Jurusan');
+	$form->startCollapse('pil_1', 'Pemilihan Diklat Keterampilan');
 	$form->endCollapse('photo');
 	$form->setRequired('All');
 	$form->form();

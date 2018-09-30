@@ -116,16 +116,17 @@ if(!empty($id))
 		<div class="container emp-profile">
 		  <form method="post">
 		      <div class="col-md-12">
-		          <div class="col-md-4">
-		              <div class="profile-img">
-		                  <img src="<?php echo image_module('diklat',$detail['id'].'/'.$detail['photo']) ?>" alt=""/>
-		                  <!-- <div class="file btn btn-lg btn-primary">
-		                      Change Photo
-		                      <input type="file" name="file"/>
-		                  </div> -->
-		              </div>
-		          </div>
-		          <div class="col-md-6">
+	          <div class="col-md-4">
+              <div class="profile-img">
+                  <img src="<?php echo image_module('diklat',$detail['id'].'/'.$detail['photo']) ?>" alt=""/>
+                  <!-- <div class="file btn btn-lg btn-primary">
+                      Change Photo
+                      <input type="file" name="file"/>
+                  </div> -->
+              </div>
+	          </div>
+	          <div class="col-md-8">
+	          	<div class="col-md-12">
 		            <div class="profile-head">
 		              <h5>
 		                <?php echo $detail['nama'] ?>
@@ -135,125 +136,103 @@ if(!empty($id))
 		              </h6>
 		              <p class="proile-rating">Total Sertifikat : <span><?php echo $tot_certificate; ?></span></p>
 		            </div>
-		          </div>
-		          <div class="col-md-2">
-		              <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
-		          </div>
-		      </div>
-		      <div class="col-md-12">
-		          <div class="col-md-4">
-		            <div class="profile-work">
-		        <!--         <p>WORK LINK</p>
-		                <a href="">Website Link</a><br/>
-		                <a href="">Bootsnipp Profile</a><br/>
-		                <a href="">Bootply Profile</a>
-		                <p>SKILLS</p>
-		                <a href="">Web Designer</a><br/>
-		                <a href="">Web Developer</a><br/>
-		                <a href="">WordPress</a><br/>
-		                <a href="">WooCommerce</a><br/>
-		                <a href="">PHP, .Net</a><br/> -->
-		            </div>
-		          </div>
-		          <div class="col-md-8">
-		          	<div>
-								  <!-- Nav tabs -->
-								  <ul class="nav nav-tabs" role="tablist">
-								    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Detail</a></li>
-								    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Sertifikat</a></li>
-								  </ul>
-								  <!-- Tab panes -->
-								  <div class="tab-content">
-								    <div role="tabpanel" class="tab-pane active" id="home">
-								    	<div class="form-group">
-									    	<div class="col-md-2">
-									    		<p>Username</p>
-									    	</div>
-									    	<div class="col-md-10">
-									    		<p><?php echo $user['username'] ?></p>
-									    	</div>
+	          	</div>
+							<div class="col-md-12">
+							  <ul class="nav nav-tabs" role="tablist">
+							    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Detail</a></li>
+							    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Sertifikat</a></li>
+							  </ul>
+							  <!-- Tab panes -->
+							  <div class="tab-content">
+							    <div role="tabpanel" class="tab-pane active" id="home">
+							    	<div class="form-group">
+								    	<div class="col-md-4">
+								    		<p>Username</p>
 								    	</div>
-								    	<div class="form-group">
-									    	<div class="col-md-2">
-									    		<p>Email</p>
-									    	</div>
-									    	<div class="col-md-10">
-									    		<p><?php echo $detail['email'] ?></p>
-									    	</div>
+								    	<div class="col-md-8">
+								    		<p><?php echo $user['username'] ?></p>
 								    	</div>
-								    	<div class="form-group">
-									    	<div class="col-md-2">
-									    		<p>Nama</p>
-									    	</div>
-									    	<div class="col-md-10">
-									    		<p><?php echo $detail['nama'] ?></p>
-									    	</div>
+							    	</div>
+							    	<div class="form-group">
+								    	<div class="col-md-4">
+								    		<p>Email</p>
 								    	</div>
-								    	<div class="form-group">
-									    	<div class="col-md-2">
-									    		<p>Tempat Lahir</p>
-									    	</div>
-									    	<div class="col-md-10">
-									    		<p><?php echo $detail['tmpt_lahir'] ?></p>
-									    	</div>
+								    	<div class="col-md-8">
+								    		<p><?php echo $detail['email'] ?></p>
 								    	</div>
-								    	<div class="form-group">
-									    	<div class="col-md-2">
-									    		<p>Tgl Lahir</p>
-									    	</div>
-									    	<div class="col-md-10">
-									    		<p><?php echo $detail['tgl_lahir'] ?></p>
-									    	</div>
+							    	</div>
+							    	<div class="form-group">
+								    	<div class="col-md-4">
+								    		<p>Nama</p>
 								    	</div>
-								    	<div class="form-group">
-									    	<div class="col-md-2">
-									    		<p>Kelamin</p>
-									    	</div>
-									    	<div class="col-md-10">
-									    		<p><?php echo !empty($detail['kelamin']) ? 'Laki-laki' : 'Perempuan'; ?></p>
-									    	</div>
+								    	<div class="col-md-8">
+								    		<p><?php echo $detail['nama'] ?></p>
 								    	</div>
-								    </div>
-								    <div role="tabpanel" class="tab-pane" id="settings">
-								    	<?php
-								    	if(!empty($certificate))
-								    	{
-						    				?>
-								    		<div class="col-md-12">
-								    			<table class="table table-responsive">
-								    				<thead>
-									    				<th>No</th>
-									    				<th>Nama Sertifikat</th>
-									    				<th>Nomor Sertifikat</th>
-									    				<th>Issued</th>
-									    				<th>Expired</th>
-								    				</thead>
-								    				<tbody>
-									    				<?php
-									    				$i = 1;
-												    	foreach ($certificate as $key => $value)
-												    	{
-												    		echo '<tr>';
-												    		echo '<td>'.$i.'</td>';
-												    		echo '<td>'.$value['title'].'</td>';
-												    		echo '<td>'.$value['number'].'</td>';
-												    		echo '<td>'.$value['issued'].'</td>';
-												    		echo '<td>'.$value['expired'].'</td>';
-												    		echo '</tr>';
-												    		$i++;
-												    	}
-									    				?>
-								    				</tbody>
-								    			</table>
-								    		</div>
-								    		<?php
-								    	}
-								    	?>
-								    </div>
-								  </div>
-
-								</div>
-		          </div>
+							    	</div>
+							    	<div class="form-group">
+								    	<div class="col-md-4">
+								    		<p>Tempat Lahir</p>
+								    	</div>
+								    	<div class="col-md-8">
+								    		<p><?php echo $detail['tmpt_lahir'] ?></p>
+								    	</div>
+							    	</div>
+							    	<div class="form-group">
+								    	<div class="col-md-4">
+								    		<p>Tgl Lahir</p>
+								    	</div>
+								    	<div class="col-md-8">
+								    		<p><?php echo $detail['tgl_lahir'] ?></p>
+								    	</div>
+							    	</div>
+							    	<div class="form-group">
+								    	<div class="col-md-4">
+								    		<p>Kelamin</p>
+								    	</div>
+								    	<div class="col-md-8">
+								    		<p><?php echo !empty($detail['kelamin']) ? 'Laki-laki' : 'Perempuan'; ?></p>
+								    	</div>
+							    	</div>
+							    </div>
+							    <div role="tabpanel" class="tab-pane" id="settings">
+							    	<?php
+							    	if(!empty($certificate))
+							    	{
+					    				?>
+							    		<div class="col-md-12">
+							    			<table class="table table-responsive">
+							    				<thead>
+								    				<th>No</th>
+								    				<th>Nama Sertifikat</th>
+								    				<th>Nomor Sertifikat</th>
+								    				<th>Issued</th>
+								    				<th>Expired</th>
+							    				</thead>
+							    				<tbody>
+								    				<?php
+								    				$i = 1;
+											    	foreach ($certificate as $key => $value)
+											    	{
+											    		echo '<tr>';
+											    		echo '<td>'.$i.'</td>';
+											    		echo '<td>'.$value['title'].'</td>';
+											    		echo '<td>'.$value['number'].'</td>';
+											    		echo '<td>'.$value['issued'].'</td>';
+											    		echo '<td>'.$value['expired'].'</td>';
+											    		echo '</tr>';
+											    		$i++;
+											    	}
+								    				?>
+							    				</tbody>
+							    			</table>
+							    		</div>
+							    		<?php
+							    	}
+							    	?>
+							    </div>
+							  </div>
+				      </div>
+	          </div>
 		      </div>
 		  </form>
 		</div>

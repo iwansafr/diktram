@@ -64,6 +64,10 @@ $form->addInput('title','text');
 
 $form->addInput('link','text');
 
+$form->addInput('is_local','checkbox');
+$form->setLabel('is_local', 'Local Link');
+$form->setCheckbox('is_local', array('1'=>'Local Link'));
+
 $form->addInput('publish', 'checkbox');
 
 $form->form();

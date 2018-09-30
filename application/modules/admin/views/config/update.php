@@ -1,5 +1,5 @@
 <?php
-$q = 'ALTER TABLE `content` ADD `image_link` VARCHAR(255) NOT NULL AFTER `image`';
+$q = "ALTER TABLE `menu` ADD `is_local` TINYINT(1) NOT NULL DEFAULT '1' AFTER `link`;";
 
 if($this->db->query($q))
 {

@@ -20,10 +20,7 @@ class Diklat extends CI_Controller
 	{
 		$this->load->view('home/index');
 	}
-	public function list()
-	{
-		$this->load->view('home/index');
-	}
+
 	public function profile()
 	{
 		$this->load->view('home/index');
