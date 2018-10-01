@@ -206,7 +206,7 @@ if(!empty($id))
 								    				<th>Nama Sertifikat</th>
 								    				<th>Nomor Sertifikat</th>
 								    				<th>Issued</th>
-								    				<th>Expired</th>
+								    				<th>Place of Issued</th>
 							    				</thead>
 							    				<tbody>
 								    				<?php
@@ -218,7 +218,7 @@ if(!empty($id))
 											    		echo '<td>'.$value['title'].'</td>';
 											    		echo '<td>'.$value['number'].'</td>';
 											    		echo '<td>'.$value['issued'].'</td>';
-											    		echo '<td>'.$value['expired'].'</td>';
+											    		echo '<td>'.@$value['place_of_issued'].'</td>';
 											    		echo '</tr>';
 											    		$i++;
 											    	}
