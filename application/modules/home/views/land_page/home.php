@@ -47,7 +47,7 @@
 		<footer>
 			<?php
 			$data['site'] = @$site;
-			$this->load->view('home/'.$active_template.'/footer', $data);
+			$this->load->view('home/footer', $data);
 			?>
 		</footer>
 		<script src="<?php echo base_url().'templates/admin/'; ?>js/jquery.js"></script>
