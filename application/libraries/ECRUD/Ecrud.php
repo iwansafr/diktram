@@ -1125,11 +1125,9 @@ class Ecrud extends CI_Model
 						{
 							if(empty($this->encrypt))
 							{
-								pr('tidak di encrypt');
 								$_POST['password'] = $_POST['password'];
 							}else{
 								$_POST['password'] = encrypt($_POST['password']);
-								pr('di encrypt');
 							}
 						}
 						if(!empty($this->table))
@@ -1201,7 +1199,7 @@ class Ecrud extends CI_Model
 								}
 								foreach ($upload as $u_key => $u_value)
 								{
-									$_POST[$u_value] = !empty($_POST[$title]) ? $u_value.'_'.str_replace(' ','_',$_POST[$title]) : 'image';
+									$_POST[$u_value] = !empty($_POST[$title]) ? $u_value.'_'.str_replace(' ','_',$_POST[$title]) : $u_value.'_image';
 									if(!empty($_FILES[$upload[$i]]['name']) && empty($_FILES[$upload[$i]]['error']))
 									{
 										$module = !empty($this->table) ? 'modules/'.$this->table : 'uploads';
@@ -1216,11 +1214,21 @@ class Ecrud extends CI_Model
 											$file_name = $_POST[$u_value].'_'.time().'.'.$ext['extension'];
 											if($this->init == 'edit')
 											{
-												$file_name_exist = $this->data_model->get_one($this->table, $u_value, "WHERE {$u_value} = '{$file_name}'");
-											}
-											if(empty($_POST[$u_value]) || empty($file_name_exist))
+												$file_name_exist = $this->data_model->get_one($this->table, $u_value);
+											}else if($this->init == 'param')
 											{
-												foreach(glob($dir.'/*') as $file)
+												$data_image      = json_decode($data_param['value'],1);
+												$file_name_exist = $data_image[$u_value];
+											}
+											if(empty($_POST[$u_value]))
+											{
+												foreach(glob($dir.'/'.$u_value.'_*') as $file)
+												{
+													unlink($file);
+												}
+											}else if(empty($file_name_exist))
+											{
+												foreach(glob($dir.'/'.$u_value.'_*') as $file)
 												{
 													unlink($file);
 												}
@@ -1233,9 +1241,9 @@ class Ecrud extends CI_Model
 											}else if($this->init == 'param'){
 												foreach ($_POST as $dp_key => $dp_value)
 												{
-													if($dp_key=='image')
+													if($dp_key=='image' || preg_match('~_image~', $dp_key))
 													{
-														$_POST[$dp_key] = $file_name;
+														$_POST[$u_value] = $file_name;
 													}
 												}
 												$data_param['value'] = json_encode($_POST);
@@ -1299,7 +1307,7 @@ class Ecrud extends CI_Model
 										}
 										if(!empty($files_upload))
 										{
-											foreach(glob($dir.'/*') as $file)
+											foreach(glob($dir.'/'.$u_value.'_*') as $file)
 											{
 												unlink($file);
 											}

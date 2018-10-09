@@ -206,19 +206,20 @@ class Esg extends CI_Model
     }
   }
 
-  function set_tag()
+  function set_tag($table = '')
   {
+    $table = !empty($table) ? $table : 'content_tag';
     $post['tag_ids'] = $_POST['tag_ids'];
     $post['tag_ids'] = explode(',', $post['tag_ids']);
     $tag_ids = array();
     foreach ($post['tag_ids'] as $key => $value)
     {
-      $tag_exist = $this->data_model->get_one('content_tag', 'title', " WHERE title = '$value'");
+      $tag_exist = $this->data_model->get_one($table, 'title', " WHERE title = '$value'");
       if(empty($tag_exist))
       {
-        $this->db->insert('content_tag', array('title'=>$value));
+        $this->db->insert($table, array('title'=>$value));
       }
-      $tag_id = $this->data_model->get_one('content_tag', 'id', " WHERE title = '$value'");
+      $tag_id = $this->data_model->get_one($table, 'id', " WHERE title = '$value'");
       if(!empty($tag_id))
       {
         $tag_ids[] = $tag_id;
