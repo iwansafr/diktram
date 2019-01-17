@@ -12,5 +12,7 @@ $form->addInput('issued','plaintext');
 $form->addInput('place_of_issued','plaintext');
 $form->setLabel('place_of_issued','Place of Issued');
 $form->setDelete(TRUE);
+$form->setEdit(TRUE);
+$form->setEditLink('?id='.@intval($_GET['id']).'&cert_id=');
 $form->setFormName('cert_list');
 $form->form();

@@ -1,9 +1,11 @@
+<a href="<?php echo base_url('admin/diklat_cert_edit?id='.@intval($_GET['id'])) ?>" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> certificate</a>
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $form = new ecrud();
 $form->init('edit');
 $form->setTable('peserta_cert');
-
+$cert_id = @intval($_GET['cert_id']);
+$form->setId($cert_id);
 $form->addInput('peserta_id','hidden');
 $form->setValue('peserta_id', $data['id']);
 $c_tmp      = $this->db->get_where('cert')->result_array();
