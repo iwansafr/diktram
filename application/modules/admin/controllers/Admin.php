@@ -218,6 +218,10 @@ class Admin extends CI_Controller
   {
     $this->load->view('admin/index');
   }
+  public function diklat_tahun()
+  {
+    $this->load->view('admin/index');
+  }
 
   /*USER*/
   public function user_list()

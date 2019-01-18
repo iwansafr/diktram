@@ -43,6 +43,11 @@ if(!empty($admin_templates))
 	        'title' => 'Diklat Keterampilan',
 	        'icon' => 'fa-bandcamp',
 	        'link' => base_url('admin/diklat_keterampilan')
+	      ),
+	      array(
+	        'title' => 'Pengaturan Tahun',
+	        'icon' => 'fa-circle-o',
+	        'link' => base_url('admin/diklat_tahun')
 	      )
 	    )
 	  ),

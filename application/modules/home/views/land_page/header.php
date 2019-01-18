@@ -83,7 +83,13 @@
 			</div>
 			<div class="col-md-8">
 				<?php
-				$tahun = 2018;
+				$config_tahun = json_decode($this->config_model->get_config('diklat_tahun')['value'],1);
+				if(!empty($config_tahun))
+				{
+					$tahun = $config_tahun['tahun'];
+				}else{
+					$tahun = date('Y');
+				}
 
 				$pendaftar           = array();
 				$pendaftar['male']   = $this->db->query('SELECT kelamin FROM diklat WHERE kelamin = ?', array(1))->num_rows();
