@@ -21,6 +21,7 @@ class Admin extends CI_Controller
     $this->load->model('data_model');
     $this->load->model('config_model');
     $this->load->model('user_model');
+    $this->load->model('diklat_model');
     $this->load->library('pagination');
     $this->load->library('ECRUD/ecrud');
     $this->load->library('esg');
@@ -221,6 +222,13 @@ class Admin extends CI_Controller
   public function diklat_tahun()
   {
     $this->load->view('admin/index');
+  }
+
+  public function diklat_list_report()
+  {
+    $data['data'] = $this->diklat_model->diklat_list();
+    $data['keterampilan'] = $this->diklat_model->keterampilan();
+    $this->load->view('admin/diklat/list_report', $data);
   }
 
   /*USER*/
