@@ -78,53 +78,53 @@ if(!empty($id))
 		'IRT (Ibur Rumah Tangga)'
 	);
 
-	$form->addInput('nama_ayah','text');
-	$form->setLabel('nama_ayah','Nama Ayah');
+	// $form->addInput('nama_ayah','text');
+	// $form->setLabel('nama_ayah','Nama Ayah');
 
-	$form->addInput('tmpt_lahir_ayah','text');
-	$form->setLabel('tmpt_lahir_ayah', 'Tempat Lahir Ayah');
+	// $form->addInput('tmpt_lahir_ayah','text');
+	// $form->setLabel('tmpt_lahir_ayah', 'Tempat Lahir Ayah');
 
-	$form->addInput('tgl_lahir_ayah','text');
-	$form->setType('tgl_lahir_ayah','date');
-	$form->setValue('tgl_lahir_ayah', '1990-01-01');
-	$form->setLabel('tgl_lahir_ayah', 'Tanggal Lahir Ayah');
+	// $form->addInput('tgl_lahir_ayah','text');
+	// $form->setType('tgl_lahir_ayah','date');
+	// $form->setValue('tgl_lahir_ayah', '1990-01-01');
+	// $form->setLabel('tgl_lahir_ayah', 'Tanggal Lahir Ayah');
 
-	$form->addInput('pdd_terakhir_ayah','dropdown');
-	$form->setLabel('pdd_terakhir_ayah','Pendidikan Terakhir Ayah');
-	$form->setOptions('pdd_terakhir_ayah',array_start_one($pendidikan));
-	$form->addInput('pekerjaan_ayah','dropdown');
-	$form->setLabel('pekerjaan_ayah','Pekerjaan Ayah');
-	$form->setOptions('pekerjaan_ayah',array_start_one($pekerjaan));
+	// $form->addInput('pdd_terakhir_ayah','dropdown');
+	// $form->setLabel('pdd_terakhir_ayah','Pendidikan Terakhir Ayah');
+	// $form->setOptions('pdd_terakhir_ayah',array_start_one($pendidikan));
+	// $form->addInput('pekerjaan_ayah','dropdown');
+	// $form->setLabel('pekerjaan_ayah','Pekerjaan Ayah');
+	// $form->setOptions('pekerjaan_ayah',array_start_one($pekerjaan));
 
-	$form->addInput('hp_ayah', 'text');
-	$form->setType('hp_ayah','number');
-	$form->setLabel('hp_ayah','No Hp Ayah');
-	$form->startCollapse('nama_ayah', 'Data Orang Tua - Ayah');
-	$form->endCollapse('hp_ayah');
+	// $form->addInput('hp_ayah', 'text');
+	// $form->setType('hp_ayah','number');
+	// $form->setLabel('hp_ayah','No Hp Ayah');
+	// $form->startCollapse('nama_ayah', 'Data Orang Tua - Ayah');
+	// $form->endCollapse('hp_ayah');
 
-	$form->addInput('nama_ibu','text');
-	$form->setLabel('nama_ibu','Nama Ibu');
+	// $form->addInput('nama_ibu','text');
+	// $form->setLabel('nama_ibu','Nama Ibu');
 
-	$form->addInput('tmpt_lahir_ibu','text');
-	$form->setLabel('tmpt_lahir_ibu', 'Tempat Lahir Ibu');
+	// $form->addInput('tmpt_lahir_ibu','text');
+	// $form->setLabel('tmpt_lahir_ibu', 'Tempat Lahir Ibu');
 
-	$form->addInput('tgl_lahir_ibu','text');
-	$form->setType('tgl_lahir_ibu','date');
-	$form->setValue('tgl_lahir_ibu', '1990-01-01');
-	$form->setLabel('tgl_lahir_ibu', 'Tanggal Lahir Ibu');
+	// $form->addInput('tgl_lahir_ibu','text');
+	// $form->setType('tgl_lahir_ibu','date');
+	// $form->setValue('tgl_lahir_ibu', '1990-01-01');
+	// $form->setLabel('tgl_lahir_ibu', 'Tanggal Lahir Ibu');
 
-	$form->addInput('pdd_terakhir_ibu','dropdown');
-	$form->setLabel('pdd_terakhir_ibu','Pendidikan Terakhir Ibu');
-	$form->setOptions('pdd_terakhir_ibu',array_start_one($pendidikan));
-	$form->addInput('pekerjaan_ibu','dropdown');
-	$form->setLabel('pekerjaan_ibu','Pekerjaan Ibu');
-	$form->setOptions('pekerjaan_ibu',array_start_one($pekerjaan));
+	// $form->addInput('pdd_terakhir_ibu','dropdown');
+	// $form->setLabel('pdd_terakhir_ibu','Pendidikan Terakhir Ibu');
+	// $form->setOptions('pdd_terakhir_ibu',array_start_one($pendidikan));
+	// $form->addInput('pekerjaan_ibu','dropdown');
+	// $form->setLabel('pekerjaan_ibu','Pekerjaan Ibu');
+	// $form->setOptions('pekerjaan_ibu',array_start_one($pekerjaan));
 
-	$form->addInput('hp_ibu', 'text');
-	$form->setType('hp_ibu','number');
-	$form->setLabel('hp_ibu','No Hp Ibu');
-	$form->startCollapse('nama_ibu', 'Data Orang Tua - Ibu');
-	$form->endCollapse('hp_ibu');
+	// $form->addInput('hp_ibu', 'text');
+	// $form->setType('hp_ibu','number');
+	// $form->setLabel('hp_ibu','No Hp Ibu');
+	// $form->startCollapse('nama_ibu', 'Data Orang Tua - Ibu');
+	// $form->endCollapse('hp_ibu');
 
 	$form->addInput('prov','text');
 	$form->setLabel('prov','Provinsi');

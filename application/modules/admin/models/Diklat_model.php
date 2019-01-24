@@ -11,6 +11,12 @@ class Diklat_model extends CI_Model
 	{
 		return $this->db->get('diklat')->result_array();
 	}
+
+	public function diklat_peserta()
+	{
+		return $this->db->query('SELECT p.username,p.password , d.* FROM peserta AS p LEFT JOIN diklat AS d ON(p.diklat_id=d.id)')->result_array();
+	}
+
 	public function keterampilan()
 	{
 		$this->db->select('id,title');

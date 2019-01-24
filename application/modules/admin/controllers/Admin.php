@@ -230,6 +230,12 @@ class Admin extends CI_Controller
     $data['keterampilan'] = $this->diklat_model->keterampilan();
     $this->load->view('admin/diklat/list_report', $data);
   }
+  public function diklat_peserta_report()
+  {
+    $data['data'] = $this->diklat_model->diklat_peserta();
+    $data['keterampilan'] = $this->diklat_model->keterampilan();
+    $this->load->view('admin/diklat/peserta_report', $data); 
+  }
 
   /*USER*/
   public function user_list()

@@ -3,7 +3,7 @@ if(@$_GET['t']=='excel')
 {
 	header("Content-Type: application/vnd.ms-excel; charset=utf-8");
 	header("Content-type: application/x-msexcel; charset=utf-8");
-	header("Content-Disposition: attachment; filename=calon peserta.xls");
+	header("Content-Disposition: attachment; filename=peserta diklat.xls");
 	header("Expires: 0");
 	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header("Cache-Control: private",false);
@@ -22,15 +22,16 @@ if(@$_GET['t'] != 'excel')
 
 <table>
 	<tr>
-		<td colspan="12" align="center"><h1 style="text-align: center;">Data Calon Peserta Diktram</h1></td>
+		<td colspan="13" align="center"><h1 style="text-align: center;">Data Peserta Diktram</h1></td>
 	</tr>
 </table>
 <table <?php echo $style; ?>>
 	<tr>
 		<td>ID</td>
-		<td>KODE</td>
 		<td>NAMA</td>
 		<td>EMAIL</td>
+		<td>USERNAME</td>
+		<td>PASSWORD</td>
 		<td>TGL LAHIR</td>
 		<td>TMPT LAHIR</td>
 		<td>KELAMIN</td>
@@ -44,9 +45,10 @@ if(@$_GET['t'] != 'excel')
 		<?php foreach ($data as $key => $value): ?>
 			<tr>
 				<td><?php echo $value['id'] ?></td>
-				<td><?php echo $value['kode'] ?></td>
 				<td><?php echo $value['nama'] ?></td>
 				<td><?php echo $value['email'] ?></td>
+				<td><?php echo $value['username'] ?></td>
+				<td><?php echo $value['password'] ?></td>
 				<td><?php echo $value['tgl_lahir'] ?></td>
 				<td><?php echo $value['tmpt_lahir'] ?></td>
 				<td><?php echo $kelamin[$value['kelamin']] ?></td>
