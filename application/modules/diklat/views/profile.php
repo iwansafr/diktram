@@ -152,7 +152,7 @@ if(!empty($id))
 								    		<p>Username</p>
 								    	</div>
 								    	<div class="col-md-8">
-								    		<p><?php echo $user['username'] ?></p>
+								    		<p><?php echo !empty($user['username']) ? $user['username'] : '-'; ?></p>
 								    	</div>
 							    	</div>
 							    	<div class="form-group">
