@@ -15,6 +15,7 @@ if(!empty($id))
 	$form->addInput('username', 'text');
 	$form->addInput('password', 'text');
 	$form->setEncrypt(FALSE);
+	$form->setFormName('peserta_form');
 	$form->form();
 
 	$form = new Ecrud();
@@ -154,14 +155,15 @@ if(!empty($id))
 	$form->addInput('pil_1', 'dropdown');
 	$form->setOptions('pil_1',$jurusan);
 	$form->setLabel('pil_1','Pilihan 1');
-	$form->addInput('pil_2', 'dropdown');
-	$form->setOptions('pil_2',$jurusan);
-	$form->setLabel('pil_2','Pilihan 2');
+	// $form->addInput('pil_2', 'dropdown');
+	// $form->setOptions('pil_2',$jurusan);
+	// $form->setLabel('pil_2','Pilihan 2');
 	$form->addInput('photo','file');
 	// $form->setAccept('photo', 'image/jpeg,image/png');
 	$form->startCollapse('pil_1', 'Data Pemilihan Jurusan');
 	$form->endCollapse('photo');
 	// $form->setRequired('All');
+	$form->setFormName('diklat_form');
 	$form->form();
 }else{
 	echo msg('id peserta tidak diketahui');

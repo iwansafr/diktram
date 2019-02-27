@@ -4,6 +4,8 @@ $id = @intval($_GET['id']);
 if(!empty($id))
 {
 	$detail = $this->db->get_where('diklat','id = '.$id, 1)->row_array();
+	$kelamin = array('1'=>'Laki-laki','2'=>'Perempuan');
+	$tot_certificate = 0;
 	if(!empty($detail))
 	{
 		$user            = $this->db->get_where('peserta','diklat_id = '.$id, 1)->row_array();
@@ -190,7 +192,7 @@ if(!empty($id))
 								    		<p>Kelamin</p>
 								    	</div>
 								    	<div class="col-md-8">
-								    		<p><?php echo !empty($detail['kelamin']) ? 'Laki-laki' : 'Perempuan'; ?></p>
+								    		<p><?php echo @$kelamin[$detail['kelamin']] ?></p>
 								    	</div>
 							    	</div>
 							    </div>
