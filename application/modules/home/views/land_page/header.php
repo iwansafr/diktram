@@ -92,9 +92,8 @@
 				}
 
 				$pendaftar           = array();
-				$pendaftar['male']   = $this->db->query('SELECT kelamin FROM diklat WHERE kelamin = ?', array(1))->num_rows();
-				$pendaftar['female'] = $this->db->query('SELECT kelamin FROM diklat WHERE kelamin = ?', array(0))->num_rows();
-
+				$pendaftar['male']   = $this->db->query('SELECT kelamin FROM diklat WHERE kelamin = ?', 1)->num_rows();
+				$pendaftar['female'] = $this->db->query('SELECT kelamin FROM diklat WHERE kelamin = ?', 2)->num_rows();
 				$pelaut = array();
 				for($i =1 ;$i<13;$i++)
 				{
@@ -104,8 +103,8 @@
 				$pelaut = json_encode($pelaut);
 				?>
 			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#Pendaftar" aria-controls="Pendaftar" role="tab" data-toggle="tab">Data Pelaut Sepanjang Masa</a></li>
-			    <li role="presentation" ><a href="#Peserta" aria-controls="Peserta" role="tab" data-toggle="tab">Pelaut Sepanjang Tahun <?php echo $tahun ?></a></li>
+			    <li role="presentation" class="active"><a href="#Pendaftar" aria-controls="Pendaftar" role="tab" data-toggle="tab">Data Taruna Sepanjang Masa</a></li>
+			    <li role="presentation" ><a href="#Peserta" aria-controls="Peserta" role="tab" data-toggle="tab">Taruna Sepanjang Tahun <?php echo $tahun ?></a></li>
 			    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Tabel Data</a></li>
 			  </ul>
 			  <!-- Tab panes -->
@@ -113,7 +112,7 @@
 			    <div role="tabpanel" class="tab-pane active" id="Pendaftar">
 			    	<div class="box box-danger">
 	            <div class="box-header with-border">
-	              <h3 class="box-title">Prosentase jumlah pelaut berdasarkan jenis kelamin</h3>
+	              <h3 class="box-title">Prosentase jumlah taruna berdasarkan jenis kelamin</h3>
 	            </div>
 	            <div class="box-body">
 	              <canvas id="pendaftarChart"></canvas>
@@ -124,7 +123,7 @@
 			    <div role="tabpanel" class="tab-pane" id="Peserta">
 			    	<div class="box box-danger">
 	            <div class="box-header with-border">
-	              <h3 class="box-title">Jumlah pelaut sepanjang tahun</h3>
+	              <h3 class="box-title">Jumlah taruna sepanjang tahun</h3>
 	            </div>
 	            <div class="box-body">
 	              <canvas id="pesertaChart"></canvas>
@@ -138,19 +137,20 @@
 	            </div>
 	            <div class="box-body">
 	              <div class="chart">
-	              	<h5 class="box-title"><?php echo strtoupper('jumlah pelaut berdasarkan jenis kelamin per '.date('d M Y')) ?></h5>
+	              	<h5 class="box-title"><?php echo strtoupper('jumlah taruna berdasarkan jenis kelamin per '.date('d M Y')) ?></h5>
 	              	<table class="table table-responsive">
 	              		<?php
 	              		$total = 0;
 	              		foreach ($pendaftar as $key => $value)
 	              		{
 	              			$kelamin = $key == 'male' ? 'Laki-laki' : 'Perempuan';
+	              			$judul = $key == 'male' ? 'Taruna' : 'Taruni';
 	              			$total += $value;
 	              			?>
 	              			<tr>
 	              				<td><?php echo $kelamin ?></td>
 	              				<td><?php echo $value ?></td>
-	              				<td><?php echo strtolower('pelaut') ?></td>
+	              				<td><?php echo $judul ?></td>
 	              			</tr>
 	              			<?php
 	              		}
@@ -163,7 +163,7 @@
 	              	</table>
 	              </div>
 	              <div class="chart">
-	              	<h5 class="box-title"><?php echo strtoupper('jumlah sertifikat yang telah diterbitkan per '.date('d M Y')) ?></h5>
+	              	<h5 class="box-title"><?php echo strtoupper('jumlah sertifikasi keahlian dan keterampilan pelaut yang telah dimiliki taruna per '.date('d M Y')) ?></h5>
 	              	<table class="table table-responsive">
 	              		<?php
 	              		$sertifikat = $this->db->get_where('cert')->result_array();

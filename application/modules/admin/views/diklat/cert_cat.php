@@ -12,6 +12,7 @@ $form2->init('roll');
 $form2->setTable('cert');
 $form2->addInput('title','plaintext');
 $form2->setFormName('roll_cert');
+$form2->setView('admin/diklat_cert_cat');
 $form2->setDelete(TRUE);
 
 
